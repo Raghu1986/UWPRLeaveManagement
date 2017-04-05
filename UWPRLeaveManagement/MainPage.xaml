@@ -165,9 +165,7 @@
                                     </Grid>
                                 </controls:Expander>
                             </StackPanel>
-                           
-
-
+              
                         </StackPanel>
 
                     </GridViewItem>
