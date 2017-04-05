@@ -46,9 +46,5 @@ namespace UWPRLeaveManagement
         }
 
 
-        //private void LeaveReasonInnerFlyoutButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    LeaveReasonFlyout.Hide();
-        //}
     }
 }

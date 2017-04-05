@@ -116,7 +116,7 @@
                                                    FontWeight="Bold"
                                                    Margin="5,3,-12,-10" />
                                     </Border>
-                                    <TextBlock Text="Days" Margin="0,10,0,0" />
+                                    <TextBlock Text="Days" Margin="0,10,5,0" />
                                 </StackPanel>
 
 
@@ -149,10 +149,15 @@
 
                                 </StackPanel>
 
-
+                               
                             </StackPanel>
+                            <RelativePanel >
+                                <Button Name="ButtonAccept" Content="Accept" Background="SpringGreen" RelativePanel.AlignLeftWithPanel="True" Margin="10,10,0,05" />
+                                <Button Name="ButtonReject" Content="Reject" Background="Red" RelativePanel.AlignRightWithPanel="True" Margin="0,10,10,05" />
+
+                            </RelativePanel>
                             <StackPanel>
-                                <controls:Expander x:Name="Expander2" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center"
+                                <controls:Expander x:Name="Expander2" VerticalAlignment="Center" Margin="0" IsRightTapEnabled="False"
                                                         IsExpanded="False" Header="Health" Background="White" FlowDirection="LeftToRight"  >
                                     <Grid  Background="White">
                                         <TextBlock Height="50" HorizontalAlignment="Center"
