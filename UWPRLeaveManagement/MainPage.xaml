@@ -3,179 +3,23 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPRLeaveManagement"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:UWPRLeaveManagement.Models"
+    
     mc:Ignorable="d"
-    Loaded="Page_Loaded"
+    
     >
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-
         </Grid.RowDefinitions>
 
-        <RelativePanel Grid.Row="0">
-            <Button Name="ButtonHamburgerMain"  FontFamily="Segoe MDL2 Assets" Width="50" Content="&#xE700;" FontSize="26" Click="ButtonHamburgerMain_Click" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" />
-            <AutoSuggestBox Name="AutoSugBoxEmps" PlaceholderText="Find a employee" QueryIcon="Find"   HorizontalAlignment="Left" Width="150" RelativePanel.AlignRightWith="ButtonHamburgerMain" RelativePanel.AlignRightWithPanel="True"  />
-        </RelativePanel>
-
-
-        <SplitView Name="EmpListSplitView" Background="GhostWhite" Grid.Row="1"  DisplayMode="CompactInline" CompactPaneLength="50"  >
-            <SplitView.Pane>
-                <StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Height="Auto" Margin="0,02,0,0" >
-                        <ListView  SelectionMode="Single" Margin="0,0,0,10" Height="Auto"   >
-                            <ListBoxItem Width="298"    >
-
-                                <StackPanel Orientation="Horizontal" Margin="-10,-5,0,0"   >
-
-                                    <Ellipse Width="35" Height="35"  >
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="Assets\EmpPhotos\AllEmpIcons.png"  />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <TextBlock x:Name="TextBlockAllEmp"
-                                           FontWeight="Thin" 
-                                           Text="All"
-                                           TextWrapping="Wrap"
-                                           HorizontalAlignment="Center"
-                                           Margin="10,10,0,0"
-                                               />
-
-
-                                </StackPanel>
-
-                            </ListBoxItem>
-                        </ListView>
-                    </StackPanel>
-
-
-
-                    <ListView ItemsSource="{x:Bind EmployeeCharacters}" Margin="0,-10,0,0">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:EmployeeMaster">
-
-                                <StackPanel Orientation="Horizontal"
-                                    Margin="0,5,0,5"
-                                     >
-
-                                    <Ellipse Width="35" Height="35">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{x:Bind EmpPath}" />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-
-                                    <TextBlock Name="TextBlockFirstName"
-                                           FontWeight="Thin" 
-                                           Text="{x:Bind EmpFirstName}"
-                                           TextWrapping="Wrap"
-                                           HorizontalAlignment="Center"
-                                           Margin="10,10,0,0"
-                                               />
-
-                                </StackPanel>
-
-
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackPanel>
-
-            </SplitView.Pane>
-            <SplitView.Content>
-                <GridView >
-                    <GridViewItem  >
-
-                        <StackPanel Background="White" BorderBrush="LightGray" BorderThickness="2" UseLayoutRounding="True"  >
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Raghu " 
-                                       FontStyle="Normal"
-                                       FontWeight="Bold"
-                                       Foreground="Black" 
-                                       Margin="20,10,0,0" />
-                                <StackPanel Orientation="Horizontal" Margin="140,0,0,0">
-                                    <Border Margin="5" 
-                                            Padding="5"
-                                            BorderThickness="1"
-                                            BorderBrush="Blue"
-                                            Width="36"
-                                            Height="35"
-                                            Background="Blue"
-                                            CornerRadius="15">
-
-                                        <TextBlock Text="15"
-                                                   FontSize="12"
-                                                   Foreground="White"
-                                                   FontWeight="Bold"
-                                                   Margin="5,3,-12,-10" />
-                                    </Border>
-                                    <TextBlock Text="Days" Margin="0,10,5,0" />
-                                </StackPanel>
-
-
-                            </StackPanel>
-
-                            <StackPanel Background="White" BorderBrush="Blue" BorderThickness="1" UseLayoutRounding="True" >
-                                <StackPanel Orientation="Horizontal">
-
-                                    <Ellipse Width="40" Height="40"  >
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="Assets\EmpPhotos\201617017.png"  />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-
-                                    <StackPanel Margin="20,2,0,0">
-                                        <TextBlock Text="Start date" TextAlignment="Center" Foreground="Black" Margin="05,0,0,0" />
-                                        <TextBlock Text="30-03-2017" />
-                                        <TextBlock Text="10:30"  FontWeight="Light" HorizontalAlignment="Center" />
-                                    </StackPanel>
-
-                                    <StackPanel Margin="20,15,0,0">
-                                        <Image Source="Assets\Icons\Sync.jpg" Width="20" Height="20" />
-                                    </StackPanel>
-
-                                    <StackPanel Margin="20,2,0,0">
-                                        <TextBlock Text="End date" TextAlignment="Center"  Foreground="Black"  Margin="05,0,0,0" />
-                                        <TextBlock Text="30-03-2017"  />
-                                        <TextBlock Text="06:30"  FontWeight="Light" HorizontalAlignment="Center" />
-                                    </StackPanel>
-
-                                </StackPanel>
-
-                               
-                            </StackPanel>
-                            <RelativePanel >
-                                <Button Name="ButtonAccept" Content="Accept" Background="SpringGreen" RelativePanel.AlignLeftWithPanel="True" Margin="10,10,0,05" />
-                                <Button Name="ButtonReject" Content="Reject" Background="Red" RelativePanel.AlignRightWithPanel="True" Margin="0,10,10,05" />
-
-                            </RelativePanel>
-                            <StackPanel>
-                                <controls:Expander x:Name="Expander2" VerticalAlignment="Center" Margin="0" IsRightTapEnabled="False"
-                                                        IsExpanded="False" Header="Health" Background="White" FlowDirection="LeftToRight"  >
-                                    <Grid  Background="White">
-                                        <TextBlock Height="50" HorizontalAlignment="Center"
-                                                       TextWrapping="WrapWholeWords"
-                                                       Text="I am not feeling well I am not feeling well I am not feeling well  This is the content"
-                                                       VerticalAlignment="Center"
-                                                       Foreground="Black"
-                                                       FontWeight="Light"
-                                                   />
-                                    </Grid>
-                                </controls:Expander>
-                            </StackPanel>
-              
-                        </StackPanel>
-
-                    </GridViewItem>
-                </GridView>
-            </SplitView.Content>
-        </SplitView>
+        <Frame Name="MainFrame" >
+            
+        </Frame>
+        
     </Grid>
 </Page>
