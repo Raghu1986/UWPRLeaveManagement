@@ -91,7 +91,7 @@
                 <GridView >
                     <GridViewItem  >
 
-                        <StackPanel Background="White" BorderBrush="LightGray" BorderThickness="2" UseLayoutRounding="True"  >
+                        <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="4" UseLayoutRounding="True"  >
 
                             <RelativePanel>
 
@@ -127,7 +127,7 @@
 
 
 
-                            <StackPanel Background="White" BorderBrush="Blue" BorderThickness="1" UseLayoutRounding="True" >
+                            <StackPanel Background="White" BorderBrush="#FF1962B9" BorderThickness="1" UseLayoutRounding="True" >
                                 <RelativePanel>
                                     <StackPanel Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True">
 
@@ -165,7 +165,7 @@
                             </RelativePanel>
                             <StackPanel>
                                 <controls:Expander x:Name="Expander2" VerticalAlignment="Center" Margin="0" IsRightTapEnabled="False"
-                                                        IsExpanded="False" Header="Health" Background="White" FlowDirection="LeftToRight"  >
+                                                        IsExpanded="False" Header="Health"  FlowDirection="LeftToRight" >
                                     <Grid  Background="White">
                                         <TextBlock Height="50" HorizontalAlignment="Center"
                                                        TextWrapping="WrapWholeWords"
