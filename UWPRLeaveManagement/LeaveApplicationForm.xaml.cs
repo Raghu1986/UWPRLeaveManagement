@@ -32,22 +32,36 @@ namespace UWPRLeaveManagement
             this.InitializeComponent();
         }
 
-        private static int GetNumberOfWorkingDays(DateTime start, DateTime stop)
+        public  int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList )
         {
             int days = 0;
             while (start <= stop)
             {
+                var HolidayCnt = HolidayList.Count();
+
                 if (start.DayOfWeek != DayOfWeek.Saturday && start.DayOfWeek != DayOfWeek.Sunday)
                 {
                     ++days;
                 }
+
+                while (HolidayCnt>0)
+                {
+                    --HolidayCnt;
+                    if (start.Date == HolidayList[HolidayCnt].Date)
+                    {
+                        --days;
+                    }
+                    
+                }
+               
                 start = start.AddDays(1);
             }
             return days;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            await HolidaySync.GetHolidayListAsnc(HolidayDates);
             StartDateCalendar.MinDate = DateTime.Now;
             EndDateCalendar.MinDate = DateTime.Now;
         }
@@ -62,12 +76,21 @@ namespace UWPRLeaveManagement
             EndDateCalendar.MaxDate = sender.Date.Value.AddDays(30).Date;
         }
 
-        private async void EndDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        private void EndDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
 
-            await HolidaySync.GetHolidayListAsnc(HolidayDates);
+            int HolidayCount = HolidayDates.Count;
+            int HolidayArrayAddr = 0;
+            DateTime[] HolidayDateList = new DateTime[HolidayCount];
+            while (HolidayCount > 0)
+            {
+                --HolidayCount;
+                HolidayDateList[HolidayArrayAddr] = Convert.ToDateTime(HolidayDates[HolidayCount].HDate.ToString());
+                ++HolidayArrayAddr;
+                
+            }
 
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(StartDateCalendar.Date.ToString()), Convert.ToDateTime(sender.Date.ToString()));
+            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(StartDateCalendar.Date.ToString()), Convert.ToDateTime(sender.Date.ToString()), HolidayDateList);
             Result.Text = cnt.ToString();
             //Result.Text = (EndDateCalendar.Date.Value - StartDateCalendar.Date.Value).TotalDays.ToString();
         }
