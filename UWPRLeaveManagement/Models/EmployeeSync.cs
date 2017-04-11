@@ -15,13 +15,12 @@ namespace UWPRLeaveManagement.Models
     {
         private async static Task<string> CallEmployeeAsync()
         {
+            string EmpSortName = "{EmpFirstName:1}";
             var http = new HttpClient();
-            string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?apiKey={2}", Common.DBName, Common.CollectionName, Common.ApiKey);
+            string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?s={2}&apiKey={3}", Common.DBName, Common.CollectionName, EmpSortName, Common.ApiKey);
             HttpResponseMessage response = await http.GetAsync(new Uri(url));
             //var jsonString = await response.Content.ReadAsStringAsync();
             return await response.Content.ReadAsStringAsync();
-
-
 
         }
 

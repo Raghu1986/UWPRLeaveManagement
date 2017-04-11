@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UWPRLeaveManagement.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,8 +24,11 @@ namespace UWPRLeaveManagement
     /// </summary>
     public sealed partial class LeaveApplicationForm : Page
     {
+        public ObservableCollection<HolidayMaster> HolidayDates { get; set; }
+
         public LeaveApplicationForm()
         {
+            HolidayDates = new ObservableCollection<HolidayMaster>();
             this.InitializeComponent();
         }
 
@@ -57,9 +62,11 @@ namespace UWPRLeaveManagement
             EndDateCalendar.MaxDate = sender.Date.Value.AddDays(30).Date;
         }
 
-        private void EndDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        private async void EndDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            
+
+            await HolidaySync.GetHolidayListAsnc(HolidayDates);
+
             var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(StartDateCalendar.Date.ToString()), Convert.ToDateTime(sender.Date.ToString()));
             Result.Text = cnt.ToString();
             //Result.Text = (EndDateCalendar.Date.Value - StartDateCalendar.Date.Value).TotalDays.ToString();

@@ -108,6 +108,8 @@
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\EmployeeMaster.cs" />
     <Compile Include="Models\EmployeeSync.cs" />
+    <Compile Include="Models\HolidayMaster.cs" />
+    <Compile Include="Models\HolidaySync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
