@@ -34,7 +34,6 @@ namespace UWPRLeaveManagement
         public ObservableCollection<HolidayMaster> HolidayDates { get; set; }
 
 
-
         public LeaveApplicationForm()
 
         {
@@ -249,9 +248,28 @@ namespace UWPRLeaveManagement
             return Workinghours;
         }
 
-        private int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList)
+        private int GetNumberOfWorkingDays(DateTime start, DateTime stop)
 
         {
+            int HolidayCount = HolidayDates.Count;
+
+            int HolidayArrayAddr = 0;
+
+            DateTime[] HolidayDateList = new DateTime[HolidayCount];
+
+            while (HolidayCount > 0)
+
+            {
+
+                --HolidayCount;
+
+                HolidayDateList[HolidayArrayAddr] = Convert.ToDateTime(HolidayDates[HolidayCount].HDate.ToString());
+
+                ++HolidayArrayAddr;
+
+
+
+            }
 
             int days = 0;
 
@@ -259,7 +277,7 @@ namespace UWPRLeaveManagement
 
             {
 
-                var HolidayCnt = HolidayList.Count();
+                var HolidayCnt = HolidayDateList.Count();
 
 
 
@@ -279,7 +297,7 @@ namespace UWPRLeaveManagement
 
                     --HolidayCnt;
 
-                    if (start.Date == HolidayList[HolidayCnt].Date)
+                    if (start.Date == HolidayDateList[HolidayCnt].Date)
 
                     {
 
@@ -333,6 +351,10 @@ namespace UWPRLeaveManagement
 
             ArrivalDateCalendar.MaxDate = sender.Date.Value.AddDays(30).Date;
 
+            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+
+            Result.Text = cnt.ToString();
+
         }
 
 
@@ -341,31 +363,10 @@ namespace UWPRLeaveManagement
 
         {
 
-
-
-            int HolidayCount = HolidayDates.Count;
-
-            int HolidayArrayAddr = 0;
-
-            DateTime[] HolidayDateList = new DateTime[HolidayCount];
-
-            while (HolidayCount > 0)
-
-            {
-
-                --HolidayCount;
-
-                HolidayDateList[HolidayArrayAddr] = Convert.ToDateTime(HolidayDates[HolidayCount].HDate.ToString());
-
-                ++HolidayArrayAddr;
-
-
-
-            }
-
-
-
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(sender.Date.ToString()), HolidayDateList);
+            
+            
+            
+            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
 
             Result.Text = cnt.ToString();
 
@@ -378,14 +379,70 @@ namespace UWPRLeaveManagement
             if (TimeResult == null) return;
             var SndrSel = (ComboBox)sender;
             var DepartureItem = (ComboBoxItem)SndrSel.SelectedItem;
-            var intitHour = DepartureItem.Content.ToString();
+            var intitDepartureHour = DepartureItem.Content.ToString();
 
-            double DepartureDayLeaveHour = GetDepartWorkingHours(intitHour);
-            TimeResult.Text = DepartureDayLeaveHour.ToString();
+            var intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+
+            double DepartureDayWorkingHour = GetDepartWorkingHours(intitDepartureHour);
+            double ArrivalDayWorkingHour = GetArrivalWorkingHours(intitArrivalHour);
+
+            double TotalWorkingHour = DepartureDayWorkingHour + ArrivalDayWorkingHour;
+
+            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+
+            if (TotalWorkingHour >= 4 && TotalWorkingHour < 8)
+            {
+
+                var abcd = Convert.ToInt32(cnt) - 0.5;
+
+                TimeResult.Text = abcd.ToString();
+
+            }
+            else if (TotalWorkingHour > 8)
+            {
+
+                var abcd = Convert.ToInt32(cnt) - 1;
+
+                TimeResult.Text = abcd.ToString();
+
+            }
+
         }
 
         private void ArrivaltimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (TimeResult == null) return;
+            var SndrSel = (ComboBox)sender;
+            var ArrivalItem = (ComboBoxItem)SndrSel.SelectedItem;
+            var intitArrivalHour = ArrivalItem.Content.ToString();
+
+            var intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
+
+            double DepartureDayWorkingHour = GetDepartWorkingHours(intitDepartureHour);
+            double ArrivalDayWorkingHour = GetArrivalWorkingHours(intitArrivalHour);
+
+            double TotalWorkingHour = DepartureDayWorkingHour + ArrivalDayWorkingHour;
+
+            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+
+            if (TotalWorkingHour>=4 && TotalWorkingHour < 8)
+            {
+
+                var abcd = Convert.ToInt32(cnt) - 0.5;
+
+                TimeResult.Text = abcd.ToString();
+
+            }
+            else if (TotalWorkingHour > 8)
+            {
+
+                var abcd = Convert.ToInt32(cnt) - 1;
+
+                TimeResult.Text = abcd.ToString();
+
+            }
+
+                
 
         }
     }
