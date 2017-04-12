@@ -431,7 +431,7 @@ namespace UWPRLeaveManagement
                 var abcd = Convert.ToInt32(cnt) - 0.5;
 
                 TimeResult.Text = abcd.ToString();
-
+                 
             }
             else if (TotalWorkingHour > 8)
             {
