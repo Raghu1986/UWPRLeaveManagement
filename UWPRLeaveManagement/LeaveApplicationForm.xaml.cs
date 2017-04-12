@@ -146,10 +146,110 @@ namespace UWPRLeaveManagement
 
             LeaveWhours = TotalWorkingWhour - Workinghours;
 
-            return LeaveWhours;
+            return Workinghours;
         }
 
-            private int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList)
+        private double GetArrivalWorkingHours(string intitHour)
+
+        {
+            double Workinghours = 9;
+            double LeaveWhours = 0;
+            double TotalWorkingWhour = 9;
+
+            if (intitHour == "10:00")
+            {
+                Workinghours = Workinghours- 0;
+
+            }
+            else if (intitHour == "10:30")
+            {
+                Workinghours = Workinghours- 0.5;
+
+            }
+            else if (intitHour == "11:00")
+            {
+                Workinghours = Workinghours- 1;
+            }
+            else if (intitHour == "11:30")
+            {
+                Workinghours = Workinghours- 1.5;
+            }
+
+            else if (intitHour == "12:00")
+            {
+                Workinghours = Workinghours- 2;
+            }
+            else if (intitHour == "21:30")
+            {
+                Workinghours = Workinghours- 2.5;
+            }
+            else if (intitHour == "21:30")
+            {
+                Workinghours = Workinghours- 2.5;
+            }
+            else if (intitHour == "01:00")
+            {
+                Workinghours = Workinghours- 3.5;
+            }
+            else if (intitHour == "01:30")
+            {
+                Workinghours = Workinghours- 4;
+            }
+            else if (intitHour == "02:00")
+            {
+                Workinghours = Workinghours- 4;
+            }
+            else if (intitHour == "02:30")
+            {
+                Workinghours = Workinghours- 4.5;
+            }
+            else if (intitHour == "03:30")
+            {
+                Workinghours = Workinghours- 5;
+            }
+            else if (intitHour == "4:00")
+            {
+                Workinghours = Workinghours- 5.5;
+            }
+            else if (intitHour == "4:30")
+            {
+                Workinghours = Workinghours- 6;
+            }
+            else if (intitHour == "4:30")
+            {
+                Workinghours = Workinghours- 6.5;
+            }
+            else if (intitHour == "5:00")
+            {
+                Workinghours = Workinghours- 7;
+            }
+            else if (intitHour == "5:30")
+            {
+                Workinghours = Workinghours- 7.5;
+            }
+            else if (intitHour == "6:00")
+            {
+                Workinghours = Workinghours- 8;
+            }
+            else if (intitHour == "6:30")
+            {
+                Workinghours = Workinghours- 8.5;
+            }
+            else if (intitHour == "7:00")
+            {
+                Workinghours = Workinghours- 9;
+            }
+            else
+            {
+                Workinghours = 0;
+            }
+
+            LeaveWhours = TotalWorkingWhour - Workinghours;
+
+            return Workinghours;
+        }
+
+        private int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList)
 
         {
 
