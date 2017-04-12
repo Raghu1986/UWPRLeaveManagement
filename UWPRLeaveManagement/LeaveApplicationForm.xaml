@@ -35,8 +35,8 @@
 
                             />
 
-            <ComboBox Name="DeparturetimeComboBox" >
-                <ComboBoxItem Content="10:00" />
+            <ComboBox Name="DeparturetimeComboBox" SelectionChanged="DeparturetimeComboBox_SelectionChanged" >
+                <ComboBoxItem Content="10:00" IsSelected="True" />
                 <ComboBoxItem Content="10:30" />
                 <ComboBoxItem Content="11:00" />
                 <ComboBoxItem Content="11:30" />
@@ -57,7 +57,7 @@
                 <ComboBoxItem Content="07:00" />
             </ComboBox>
 
-            <ComboBox Name="ArrivaltimeComboBox" >
+            <ComboBox Name="ArrivaltimeComboBox" SelectionChanged="ArrivaltimeComboBox_SelectionChanged" >
                 <ComboBoxItem Content="10:00" />
                 <ComboBoxItem Content="10:30" />
                 <ComboBoxItem Content="11:00" />
@@ -76,10 +76,11 @@
                 <ComboBoxItem Content="05:30" />
                 <ComboBoxItem Content="06:00" />
                 <ComboBoxItem Content="06:30" />
-                <ComboBoxItem Content="07:00" />
+                <ComboBoxItem Content="07:00" IsSelected="True" />
             </ComboBox>
 
             <TextBlock Name="Result" />
+            <TextBlock Name="TimeResult" />
 
 
 

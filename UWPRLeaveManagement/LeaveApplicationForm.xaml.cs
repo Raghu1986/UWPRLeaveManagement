@@ -44,14 +44,112 @@ namespace UWPRLeaveManagement
             this.InitializeComponent();
 
             HolidayDates = new ObservableCollection<HolidayMaster>();
-            DeparturetimeComboBox.SelectedIndex = 0;
-            ArrivaltimeComboBox.SelectedIndex = DeparturetimeComboBox.Items.Count - 1;
+           // DeparturetimeComboBox.SelectedIndex = 0;
+           // ArrivaltimeComboBox.SelectedIndex = DeparturetimeComboBox.Items.Count - 1;
 
         }
 
+        private double GetDepartWorkingHours(string intitHour)
 
+        {
+            double Workinghours = 0;
+            double LeaveWhours = 0;
+            double TotalWorkingWhour = 9;
 
-        public int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList)
+            if (intitHour == "10:00")
+            {
+                Workinghours =  0;
+
+            }
+            else if (intitHour=="10:30")
+            {
+                Workinghours = 0.5;
+
+            }
+                else if(intitHour=="11:00")
+            {
+                Workinghours =  1;
+            }
+            else if (intitHour == "11:30")
+            {
+                Workinghours = 1.5;
+            }
+        
+                else if(intitHour=="12:00")
+            {
+                Workinghours =  2;
+            }
+            else if (intitHour == "21:30")
+            {
+                Workinghours =  2.5;
+            }
+            else if (intitHour == "21:30")
+            {
+                Workinghours =  2.5;
+            }
+            else if (intitHour == "01:00")
+            {
+                Workinghours =  3.5;
+            }
+            else if (intitHour == "01:30")
+            {
+                Workinghours =  4;
+            }
+            else if (intitHour == "02:00")
+            {
+                Workinghours =  4;
+            }
+            else if (intitHour == "02:30")
+            {
+                Workinghours = 4.5;
+            }
+            else if (intitHour == "03:30")
+            {
+                Workinghours =  5;
+            }
+            else if (intitHour == "4:00")
+            {
+                Workinghours =  5.5;
+            }
+            else if (intitHour == "4:30")
+            {
+                Workinghours =  6;
+            }
+            else if (intitHour == "4:30")
+            {
+                Workinghours =  6.5;
+            }
+            else if (intitHour == "5:00")
+            {
+                Workinghours =  7;
+            }
+            else if (intitHour == "5:30")
+            {
+                Workinghours =  7.5;
+            }
+            else if (intitHour == "6:00")
+            {
+                Workinghours =  8;
+            }
+            else if (intitHour == "6:30")
+            {
+                Workinghours =  8.5;
+            }
+            else if (intitHour == "7:00")
+            {
+                Workinghours =  9;
+            }
+            else
+            {
+                Workinghours = 0;
+            }
+
+            LeaveWhours = TotalWorkingWhour - Workinghours;
+
+            return LeaveWhours;
+        }
+
+            private int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList)
 
         {
 
@@ -175,6 +273,21 @@ namespace UWPRLeaveManagement
 
         }
 
+        private void DeparturetimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TimeResult == null) return;
+            var SndrSel = (ComboBox)sender;
+            var DepartureItem = (ComboBoxItem)SndrSel.SelectedItem;
+            var intitHour = DepartureItem.Content.ToString();
+
+            double DepartureDayLeaveHour = GetDepartWorkingHours(intitHour);
+            TimeResult.Text = DepartureDayLeaveHour.ToString();
+        }
+
+        private void ArrivaltimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }
