@@ -18,81 +18,163 @@ using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace UWPRLeaveManagement
+
 {
+
     /// <summary>
+
     /// An empty page that can be used on its own or navigated to within a Frame.
+
     /// </summary>
+
     public sealed partial class LeaveApplicationForm : Page
+
     {
+
         public ObservableCollection<HolidayMaster> HolidayDates { get; set; }
 
+
+
         public LeaveApplicationForm()
+
         {
-            HolidayDates = new ObservableCollection<HolidayMaster>();
+
+            
+
             this.InitializeComponent();
+
+            HolidayDates = new ObservableCollection<HolidayMaster>();
+            DeparturetimeComboBox.SelectedIndex = 0;
+            ArrivaltimeComboBox.SelectedIndex = DeparturetimeComboBox.Items.Count - 1;
+
         }
 
-        public  int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList )
+
+
+        public int GetNumberOfWorkingDays(DateTime start, DateTime stop, DateTime[] HolidayList)
+
         {
+
             int days = 0;
+
             while (start <= stop)
+
             {
+
                 var HolidayCnt = HolidayList.Count();
 
+
+
                 if (start.DayOfWeek != DayOfWeek.Saturday && start.DayOfWeek != DayOfWeek.Sunday)
+
                 {
+
                     ++days;
+
                 }
 
-                while (HolidayCnt>0)
+
+
+                while (HolidayCnt > 0)
+
                 {
+
                     --HolidayCnt;
+
                     if (start.Date == HolidayList[HolidayCnt].Date)
+
                     {
+
                         --days;
+
                     }
-                    
+
+
+
                 }
-               
+
+
+
                 start = start.AddDays(1);
+
             }
+
             return days;
+
         }
+
+
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
+
         {
+
             await HolidaySync.GetHolidayListAsnc(HolidayDates);
-            StartDateCalendar.MinDate = DateTime.Now;
-            EndDateCalendar.MinDate = DateTime.Now;
+
+            DepartureDateCalendar.MinDate = DateTime.Now;
+
+            ArrivalDateCalendar.MinDate = DateTime.Now;
+
         }
 
 
 
-       
-        private void StartDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+
+
+
+
+
+
+        private void DepartureDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+
         {
-            EndDateCalendar.Date = sender.Date.Value.AddDays(1).Date; 
-            EndDateCalendar.MinDate = sender.Date.Value;
-            EndDateCalendar.MaxDate = sender.Date.Value.AddDays(30).Date;
+
+            ArrivalDateCalendar.Date = sender.Date.Value.AddDays(1).Date;
+
+            ArrivalDateCalendar.MinDate = sender.Date.Value;
+
+            ArrivalDateCalendar.MaxDate = sender.Date.Value.AddDays(30).Date;
+
         }
 
-        private void EndDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+
+
+        private void ArrivalDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+
         {
+
+
 
             int HolidayCount = HolidayDates.Count;
+
             int HolidayArrayAddr = 0;
+
             DateTime[] HolidayDateList = new DateTime[HolidayCount];
+
             while (HolidayCount > 0)
+
             {
+
                 --HolidayCount;
+
                 HolidayDateList[HolidayArrayAddr] = Convert.ToDateTime(HolidayDates[HolidayCount].HDate.ToString());
+
                 ++HolidayArrayAddr;
-                
+
+
+
             }
 
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(StartDateCalendar.Date.ToString()), Convert.ToDateTime(sender.Date.ToString()), HolidayDateList);
+
+
+            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(sender.Date.ToString()), HolidayDateList);
+
             Result.Text = cnt.ToString();
-            //Result.Text = (EndDateCalendar.Date.Value - StartDateCalendar.Date.Value).TotalDays.ToString();
+
+            //Result.Text = (ArrivalDateCalendar.Date.Value - DepartureDateCalendar.Date.Value).TotalDays.ToString();
+
         }
+
     }
+
 }
