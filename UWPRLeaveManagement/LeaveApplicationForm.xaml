@@ -36,47 +36,47 @@
                             />
 
             <ComboBox Name="DeparturetimeComboBox" SelectionChanged="DeparturetimeComboBox_SelectionChanged" >
-                <ComboBoxItem Content="10:00" IsSelected="True" />
-                <ComboBoxItem Content="10:30" />
-                <ComboBoxItem Content="11:00" />
-                <ComboBoxItem Content="11:30" />
-                <ComboBoxItem Content="12:00" />
-                <ComboBoxItem Content="12:30" />
-                <ComboBoxItem Content="01:00" />
-                <ComboBoxItem Content="01:30" />
-                <ComboBoxItem Content="02:00" />
-                <ComboBoxItem Content="02:30" />
-                <ComboBoxItem Content="03:00" />
-                <ComboBoxItem Content="03:30" />
-                <ComboBoxItem Content="04:00" />
-                <ComboBoxItem Content="04:30" />
-                <ComboBoxItem Content="05:00" />
-                <ComboBoxItem Content="05:30" />
-                <ComboBoxItem Content="06:00" />
-                <ComboBoxItem Content="06:30" />
-                <ComboBoxItem Content="07:00" />
+                <ComboBoxItem Content="10:00 AM" IsSelected="True" />
+                <ComboBoxItem Content="10:30 AM" />
+                <ComboBoxItem Content="11:00 AM" />
+                <ComboBoxItem Content="11:30 AM" />
+                <ComboBoxItem Content="12:00 PM" />
+                <ComboBoxItem Content="12:30 PM" />
+                <ComboBoxItem Content="01:00 PM" />
+                <ComboBoxItem Content="01:30 PM" />
+                <ComboBoxItem Content="02:00 PM" />
+                <ComboBoxItem Content="02:30 PM" />
+                <ComboBoxItem Content="03:00 PM" />
+                <ComboBoxItem Content="03:30 PM" />
+                <ComboBoxItem Content="04:00 PM" />
+                <ComboBoxItem Content="04:30 PM" />
+                <ComboBoxItem Content="05:00 PM" />
+                <ComboBoxItem Content="05:30 PM" />
+                <ComboBoxItem Content="06:00 PM" />
+                <ComboBoxItem Content="06:30 PM" />
+                <ComboBoxItem Content="07:00 PM" />
             </ComboBox>
 
             <ComboBox Name="ArrivaltimeComboBox" SelectionChanged="ArrivaltimeComboBox_SelectionChanged" >
-                <ComboBoxItem Content="10:00" />
-                <ComboBoxItem Content="10:30" />
-                <ComboBoxItem Content="11:00" />
-                <ComboBoxItem Content="11:30" />
-                <ComboBoxItem Content="12:00" />
-                <ComboBoxItem Content="12:30" />
-                <ComboBoxItem Content="01:00" />
-                <ComboBoxItem Content="01:30" />
-                <ComboBoxItem Content="02:00" />
-                <ComboBoxItem Content="02:30" />
-                <ComboBoxItem Content="03:00" />
-                <ComboBoxItem Content="03:30" />
-                <ComboBoxItem Content="04:00" />
-                <ComboBoxItem Content="04:30" />
-                <ComboBoxItem Content="05:00" />
-                <ComboBoxItem Content="05:30" />
-                <ComboBoxItem Content="06:00" />
-                <ComboBoxItem Content="06:30" />
-                <ComboBoxItem Content="07:00" IsSelected="True" />
+                <ComboBoxItem Content="10:00 AM" />
+                <ComboBoxItem Content="10:30 AM" />
+                <ComboBoxItem Content="11:00 AM" />
+                <ComboBoxItem Content="11:30 AM" />
+                <ComboBoxItem Content="12:00 PM" />
+                <ComboBoxItem Content="12:30 PM" />
+                <ComboBoxItem Content="01:00 PM" />
+                <ComboBoxItem Content="01:30 PM" />
+                <ComboBoxItem Content="02:00 PM" />
+                <ComboBoxItem Content="02:30 PM" />
+                <ComboBoxItem Content="03:00 PM" />
+                <ComboBoxItem Content="03:30 PM" />
+                <ComboBoxItem Content="04:00 PM" />
+                <ComboBoxItem Content="04:30 PM" />
+                <ComboBoxItem Content="05:00 PM" />
+                <ComboBoxItem Content="05:30 PM" />
+                <ComboBoxItem Content="06:00 PM" />
+                <ComboBoxItem Content="06:30 PM" />
+                <ComboBoxItem Content="07:00 PM" IsSelected="True" />
             </ComboBox>
 
             <TextBlock Name="Result" />

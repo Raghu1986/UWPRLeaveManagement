@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -55,21 +56,21 @@ namespace UWPRLeaveManagement
             double LeaveWhours = 0;
             double TotalWorkingWhour = 9;
 
-            if (intitHour == "10:00")
+            if (intitHour == "10:00 AM")
             {
                 Workinghours =  0;
 
             }
-            else if (intitHour=="10:30")
+            else if (intitHour== "10:30 AM")
             {
                 Workinghours = 0.5;
 
             }
-                else if(intitHour=="11:00")
+                else if(intitHour== "11:00 AM")
             {
                 Workinghours =  1;
             }
-            else if (intitHour == "11:30")
+            else if (intitHour == "11:30 AM")
             {
                 Workinghours = 1.5;
             }
@@ -78,63 +79,60 @@ namespace UWPRLeaveManagement
             {
                 Workinghours =  2;
             }
-            else if (intitHour == "21:30")
+            else if (intitHour == "12:30 PM")
             {
                 Workinghours =  2.5;
             }
-            else if (intitHour == "21:30")
-            {
-                Workinghours =  2.5;
-            }
-            else if (intitHour == "01:00")
+            
+            else if (intitHour == "01:00 PM")
             {
                 Workinghours =  3.5;
             }
-            else if (intitHour == "01:30")
+            else if (intitHour == "01:30 PM")
             {
                 Workinghours =  4;
             }
-            else if (intitHour == "02:00")
+            else if (intitHour == "02:00 PM")
             {
                 Workinghours =  4;
             }
-            else if (intitHour == "02:30")
+            else if (intitHour == "02:30 PM")
             {
                 Workinghours = 4.5;
             }
-            else if (intitHour == "03:30")
+            else if (intitHour == "03:30 PM")
             {
                 Workinghours =  5;
             }
-            else if (intitHour == "4:00")
+            else if (intitHour == "04:00 PM")
             {
                 Workinghours =  5.5;
             }
-            else if (intitHour == "4:30")
+            else if (intitHour == "04:30 PM")
             {
                 Workinghours =  6;
             }
-            else if (intitHour == "4:30")
+            else if (intitHour == "04:30 PM")
             {
                 Workinghours =  6.5;
             }
-            else if (intitHour == "5:00")
+            else if (intitHour == "05:00 PM")
             {
                 Workinghours =  7;
             }
-            else if (intitHour == "5:30")
+            else if (intitHour == "05:30 PM")
             {
                 Workinghours =  7.5;
             }
-            else if (intitHour == "6:00")
+            else if (intitHour == "06:00 PM")
             {
                 Workinghours =  8;
             }
-            else if (intitHour == "6:30")
+            else if (intitHour == "06:30 PM")
             {
                 Workinghours =  8.5;
             }
-            else if (intitHour == "7:00")
+            else if (intitHour == "07:00 PM")
             {
                 Workinghours =  9;
             }
@@ -155,86 +153,83 @@ namespace UWPRLeaveManagement
             double LeaveWhours = 0;
             double TotalWorkingWhour = 9;
 
-            if (intitHour == "10:00")
+            if (intitHour == "10:00 AM")
             {
                 Workinghours = Workinghours- 0;
 
             }
-            else if (intitHour == "10:30")
+            else if (intitHour == "10:30 AM")
             {
                 Workinghours = Workinghours- 0.5;
 
             }
-            else if (intitHour == "11:00")
+            else if (intitHour == "11:00 AM")
             {
                 Workinghours = Workinghours- 1;
             }
-            else if (intitHour == "11:30")
+            else if (intitHour == "11:30 AM")
             {
                 Workinghours = Workinghours- 1.5;
             }
 
-            else if (intitHour == "12:00")
+            else if (intitHour == "12:00 PM")
             {
                 Workinghours = Workinghours- 2;
             }
-            else if (intitHour == "21:30")
+            else if (intitHour == "12:30 PM")
             {
                 Workinghours = Workinghours- 2.5;
             }
-            else if (intitHour == "21:30")
-            {
-                Workinghours = Workinghours- 2.5;
-            }
-            else if (intitHour == "01:00")
+            
+            else if (intitHour == "01:00 PM")
             {
                 Workinghours = Workinghours- 3.5;
             }
-            else if (intitHour == "01:30")
+            else if (intitHour == "01:30 PM")
             {
                 Workinghours = Workinghours- 4;
             }
-            else if (intitHour == "02:00")
+            else if (intitHour == "02:00 PM")
             {
                 Workinghours = Workinghours- 4;
             }
-            else if (intitHour == "02:30")
+            else if (intitHour == "02:30 PM")
             {
                 Workinghours = Workinghours- 4.5;
             }
-            else if (intitHour == "03:30")
+            else if (intitHour == "03:30 PM")
             {
                 Workinghours = Workinghours- 5;
             }
-            else if (intitHour == "4:00")
+            else if (intitHour == "04:00 PM")
             {
                 Workinghours = Workinghours- 5.5;
             }
-            else if (intitHour == "4:30")
+            else if (intitHour == "04:30 PM")
             {
                 Workinghours = Workinghours- 6;
             }
-            else if (intitHour == "4:30")
+            else if (intitHour == "04:30 PM")
             {
                 Workinghours = Workinghours- 6.5;
             }
-            else if (intitHour == "5:00")
+            else if (intitHour == "05:00 PM")
             {
                 Workinghours = Workinghours- 7;
             }
-            else if (intitHour == "5:30")
+            else if (intitHour == "05:30 PM")
             {
                 Workinghours = Workinghours- 7.5;
             }
-            else if (intitHour == "6:00")
+            else if (intitHour == "06:00 PM")
             {
                 Workinghours = Workinghours- 8;
             }
-            else if (intitHour == "6:30")
+            else if (intitHour == "06:30 PM")
             {
                 Workinghours = Workinghours- 8.5;
             }
-            else if (intitHour == "7:00")
+            else if (intitHour == "07:00 PM")
             {
                 Workinghours = Workinghours- 9;
             }
@@ -319,7 +314,81 @@ namespace UWPRLeaveManagement
 
         }
 
+        private string GetNumbertoDays(string value)
+        {
+            string result = "";
+       
+                
+                //var values = value(CultureInfo.InvariantCulture).Split('.');
+                
 
+                string[] values = value.Split('.');
+                int firstValue = int.Parse(values[0]);
+
+            int secondValue = 0;
+                if (values.Length == 1)
+                {
+                    secondValue = 0;
+                }
+                else
+                {
+                    secondValue = int.Parse(values[1]);
+                }
+                    
+                
+                if (secondValue == 5 && secondValue == 05)
+                {
+                    result = firstValue + " " + " and " + "half" + " days";
+                }
+                else
+                {
+                    result = firstValue.ToString() + " days";
+                }
+
+            
+
+            return result;
+        
+        }
+
+        private double GetNumberOfLeaveDays(string intitDepartureHour,string intitArrivalHour)
+        {
+            double Leavedays = 0;
+
+            //var intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+            //var intitDepartureHour = DeparturetimeComboBox.SelectedItem.ToString();
+
+            double DepartureDayWorkingHour = GetDepartWorkingHours(intitDepartureHour);
+            double ArrivalDayWorkingHour = GetArrivalWorkingHours(intitArrivalHour);
+
+            double TotalWorkingHour = DepartureDayWorkingHour + ArrivalDayWorkingHour;
+
+            double cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+
+            if (TotalWorkingHour >= 4 && TotalWorkingHour < 8)
+            {
+
+                Leavedays = cnt - 0.5;
+
+                
+
+            }
+            else if (TotalWorkingHour >= 8)
+            {
+
+                Leavedays = cnt - 1;
+
+            }
+            else
+            {
+                Leavedays = cnt;
+            }
+
+
+
+            return Leavedays;
+            
+        }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
 
@@ -333,27 +402,23 @@ namespace UWPRLeaveManagement
 
         }
 
-
-
-
-
-
-
+        
 
 
         private void DepartureDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
 
         {
-
+            if (Result == null) return;
             ArrivalDateCalendar.Date = sender.Date.Value.AddDays(1).Date;
 
             ArrivalDateCalendar.MinDate = sender.Date.Value;
 
             ArrivalDateCalendar.MaxDate = sender.Date.Value.AddDays(30).Date;
 
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+            string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
+            string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-            Result.Text = cnt.ToString();
+            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
         }
 
@@ -363,86 +428,38 @@ namespace UWPRLeaveManagement
 
         {
 
-            
-            
-            
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+            if (Result == null) return;
 
-            Result.Text = cnt.ToString();
+            string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
+            string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-            //Result.Text = (ArrivalDateCalendar.Date.Value - DepartureDateCalendar.Date.Value).TotalDays.ToString();
+
+            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
         }
 
         private void DeparturetimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TimeResult == null) return;
+            if (Result == null) return;
             var SndrSel = (ComboBox)sender;
             var DepartureItem = (ComboBoxItem)SndrSel.SelectedItem;
-            var intitDepartureHour = DepartureItem.Content.ToString();
+            string intitDepartureHour = DepartureItem.Content.ToString();
+            string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-            var intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
-            double DepartureDayWorkingHour = GetDepartWorkingHours(intitDepartureHour);
-            double ArrivalDayWorkingHour = GetArrivalWorkingHours(intitArrivalHour);
-
-            double TotalWorkingHour = DepartureDayWorkingHour + ArrivalDayWorkingHour;
-
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
-
-            if (TotalWorkingHour >= 4 && TotalWorkingHour < 8)
-            {
-
-                var abcd = Convert.ToInt32(cnt) - 0.5;
-
-                TimeResult.Text = abcd.ToString();
-
-            }
-            else if (TotalWorkingHour > 8)
-            {
-
-                var abcd = Convert.ToInt32(cnt) - 1;
-
-                TimeResult.Text = abcd.ToString();
-
-            }
 
         }
 
         private void ArrivaltimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TimeResult == null) return;
+            if (Result == null) return;
             var SndrSel = (ComboBox)sender;
             var ArrivalItem = (ComboBoxItem)SndrSel.SelectedItem;
-            var intitArrivalHour = ArrivalItem.Content.ToString();
+            string intitArrivalHour = ArrivalItem.Content.ToString();
+            string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
 
-            var intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
-
-            double DepartureDayWorkingHour = GetDepartWorkingHours(intitDepartureHour);
-            double ArrivalDayWorkingHour = GetArrivalWorkingHours(intitArrivalHour);
-
-            double TotalWorkingHour = DepartureDayWorkingHour + ArrivalDayWorkingHour;
-
-            var cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
-
-            if (TotalWorkingHour>=4 && TotalWorkingHour < 8)
-            {
-
-                var abcd = Convert.ToInt32(cnt) - 0.5;
-
-                TimeResult.Text = abcd.ToString();
-                 
-            }
-            else if (TotalWorkingHour > 8)
-            {
-
-                var abcd = Convert.ToInt32(cnt) - 1;
-
-                TimeResult.Text = abcd.ToString();
-
-            }
-
-                
+            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
         }
     }
