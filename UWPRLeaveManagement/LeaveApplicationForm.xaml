@@ -77,8 +77,8 @@
                 <ComboBoxItem Content="06:00 PM" />
                 <ComboBoxItem Content="06:30 PM" />
                 <ComboBoxItem Content="07:00 PM" IsSelected="True" />
-            </ComboBox>
-
+            </ComboBox> 
+ 
             <TextBlock Name="Result" />
             <TextBlock Name="TimeResult" />
 
