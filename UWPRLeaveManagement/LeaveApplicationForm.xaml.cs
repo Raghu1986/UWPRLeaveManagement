@@ -243,7 +243,7 @@ namespace UWPRLeaveManagement
             return Workinghours;
         }
 
-        private int GetNumberOfWorkingDays(DateTime start, DateTime stop)
+        private int GetNumberOfWorkingDaysExceptHolidays(DateTime start, DateTime stop)
 
         {
             int HolidayCount = HolidayDates.Count;
@@ -363,7 +363,7 @@ namespace UWPRLeaveManagement
 
             double TotalWorkingHour = DepartureDayWorkingHour + ArrivalDayWorkingHour;
 
-            double cnt = GetNumberOfWorkingDays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
+            double cnt = GetNumberOfWorkingDaysExceptHolidays(Convert.ToDateTime(DepartureDateCalendar.Date.ToString()), Convert.ToDateTime(ArrivalDateCalendar.Date.ToString()));
 
             if (TotalWorkingHour >= 4 && TotalWorkingHour < 8)
             {
@@ -373,12 +373,34 @@ namespace UWPRLeaveManagement
                 
 
             }
+            else if (TotalWorkingHour >= 8 && TotalWorkingHour < 12)
+            {
+
+                Leavedays = cnt - 1;
+
+            }
+
+            else if (TotalWorkingHour >= 12 && TotalWorkingHour < 14)
+            {
+
+                Leavedays = cnt - 1.5;
+
+            }
+
+            else if (TotalWorkingHour >= 14)
+            {
+
+                Leavedays = cnt - 2;
+
+            }
+
             else if (TotalWorkingHour >= 8)
             {
 
                 Leavedays = cnt - 1;
 
             }
+
             else
             {
                 Leavedays = cnt;
