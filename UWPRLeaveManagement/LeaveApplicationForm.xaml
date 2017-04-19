@@ -26,6 +26,8 @@
             <CalendarDatePicker Name="ArrivalDateCalendar"
 
                             IsTodayHighlighted="True"
+                                
+                                
 
                             IsCalendarOpen="False"
 
