@@ -418,6 +418,20 @@ namespace UWPRLeaveManagement
 
             await HolidaySync.GetHolidayListAsnc(HolidayDates);
 
+            //TimeResult.Text = await LeaveTransactionPost.LeaveDataPostAsync
+            //    (
+            //    "201112005", "Rakshith",
+            //    "C", "Software Engineer",
+            //    "Madhusudan", "DOT NET",
+            //    "25-04-2017", "10:00 AM",
+            //    "30-04-2017", "02:30 PM",
+            //    "19-04-2017", "12:04 PM",
+            //    "3 and half days", "Health",
+            //    "I am not feeling well so shall i take leave on thease days", "Madhusudan",
+            //    "20-04-2017", "11:00 AM",
+            //    "1"
+            //    );
+
             DepartureDateCalendar.MinDate = DateTime.Now;
 
             ArrivalDateCalendar.MinDate = DateTime.Now;

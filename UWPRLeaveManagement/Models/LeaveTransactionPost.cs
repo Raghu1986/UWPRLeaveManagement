@@ -11,7 +11,7 @@ namespace UWPRLeaveManagement.Models
     public class LeaveTransactionPost
     {
 
-        public static async Task LeaveDataPostAsync
+        public static async Task<string> LeaveDataPostAsync
             
             (
             string EmpId, string EmpFirstName,
@@ -36,7 +36,11 @@ namespace UWPRLeaveManagement.Models
             var SerializedData = JsonConvert.SerializeObject(TransactionData);
             http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             var ResponseBody = await http.PostAsync(address, new StringContent(SerializedData, Encoding.UTF8, "application/json"));
+
+            return  ResponseBody.StatusCode.ToString();
+
             
+
         }
 
     }
