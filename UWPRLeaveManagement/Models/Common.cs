@@ -15,6 +15,8 @@ namespace UWPRLeaveManagement.Models
         public static string ApiKey = "S28OtSpOTDrd95OEVtSa7OHfrxpqA_L7";
         public static string HolidayDBName = "rleavemanagement";
         public static string HolidayCollectionName = "Rholidaylists";
+        public static string LeaveTransactionDBName = "rleavemanagement";
+        public static string LeaveTransactionCollectionName = "Rleavetransaction";
 
     }
 }

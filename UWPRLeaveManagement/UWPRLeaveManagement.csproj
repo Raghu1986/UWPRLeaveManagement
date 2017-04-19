@@ -110,6 +110,8 @@
     <Compile Include="Models\EmployeeSync.cs" />
     <Compile Include="Models\HolidayMaster.cs" />
     <Compile Include="Models\HolidaySync.cs" />
+    <Compile Include="Models\Leavetransaction.cs" />
+    <Compile Include="Models\LeaveTransactionPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
