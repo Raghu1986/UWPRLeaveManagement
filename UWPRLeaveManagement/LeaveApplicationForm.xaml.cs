@@ -334,9 +334,28 @@ namespace UWPRLeaveManagement
                 {
                     secondValue = int.Parse(values[1]);
                 }
-                    
-                
-                if (secondValue == 5 && secondValue == 05)
+
+                if (firstValue==0 && secondValue == 5 && secondValue == 05)
+                {
+                    result =  "half" + " day";
+                }
+
+                else if (firstValue == 1 && secondValue == 0 && secondValue == 0)
+
+                {
+                    result = firstValue  + " day";
+                }
+
+                else if (firstValue == 1 && secondValue == 5 && secondValue == 05)
+
+                {
+                    result = firstValue + " " + " and " + "half" + " day";
+                }
+
+
+
+                else if (firstValue > 1 && secondValue == 5 && secondValue == 05)
+
                 {
                     result = firstValue + " " + " and " + "half" + " days";
                 }
@@ -454,7 +473,16 @@ namespace UWPRLeaveManagement
             string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            if (ArrivalDateCalendar.Date == DepartureDateCalendar.Date && intitDepartureHour == "10:00 AM" && intitArrivalHour == "07:00 PM")
+            {
+                Result.Text = GetNumbertoDays("0");
+            }
+            else
+            {
+                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            }
+
+            
 
         }
 
@@ -469,8 +497,15 @@ namespace UWPRLeaveManagement
             string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-
-            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            if (ArrivalDateCalendar.Date == DepartureDateCalendar.Date && intitDepartureHour== "10:00 AM" && intitArrivalHour== "07:00 PM")
+            {
+                Result.Text = GetNumbertoDays("0");
+            }
+            else
+            {
+                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            }
+            
 
         }
 
@@ -482,7 +517,16 @@ namespace UWPRLeaveManagement
             string intitDepartureHour = DepartureItem.Content.ToString();
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            if (ArrivalDateCalendar.Date == DepartureDateCalendar.Date && intitDepartureHour == "10:00 AM" && intitArrivalHour == "07:00 PM")
+            {
+                Result.Text = GetNumbertoDays("0");
+            }
+            else
+            {
+
+                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+
+            }
 
 
         }
@@ -495,7 +539,15 @@ namespace UWPRLeaveManagement
             string intitArrivalHour = ArrivalItem.Content.ToString();
             string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
 
-            Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            if (ArrivalDateCalendar.Date == DepartureDateCalendar.Date && intitDepartureHour == "10:00 AM" && intitArrivalHour == "07:00 PM")
+            {
+                Result.Text = GetNumbertoDays("0");
+            }
+            else
+            {
+
+                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            }
 
         }
     }
