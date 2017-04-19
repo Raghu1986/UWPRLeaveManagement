@@ -353,7 +353,6 @@ namespace UWPRLeaveManagement
                 }
 
 
-
                 else if (firstValue > 1 && secondValue == 5 && secondValue == 05)
 
                 {
