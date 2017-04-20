@@ -33,6 +33,7 @@ namespace UWPRLeaveManagement
     {
 
         public ObservableCollection<HolidayMaster> HolidayDates { get; set; }
+        public string LeavePeriod;
 
 
         public LeaveApplicationForm()
@@ -44,8 +45,9 @@ namespace UWPRLeaveManagement
             this.InitializeComponent();
 
             HolidayDates = new ObservableCollection<HolidayMaster>();
-           // DeparturetimeComboBox.SelectedIndex = 0;
-           // ArrivaltimeComboBox.SelectedIndex = DeparturetimeComboBox.Items.Count - 1;
+
+             //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.Count - 1;
+            // DeparturetimeComboBox.SelectedIndex = 0;
 
         }
 
@@ -314,61 +316,6 @@ namespace UWPRLeaveManagement
 
         }
 
-        private string GetNumbertoDays(string value)
-        {
-            string result = "";
-       
-                
-                //var values = value(CultureInfo.InvariantCulture).Split('.');
-                
-
-                string[] values = value.Split('.');
-                int firstValue = int.Parse(values[0]);
-
-            int secondValue = 0;
-                if (values.Length == 1)
-                {
-                    secondValue = 0;
-                }
-                else
-                {
-                    secondValue = int.Parse(values[1]);
-                }
-
-                if (firstValue==0 && secondValue == 5 && secondValue == 05)
-                {
-                    result =  "half" + " day";
-                }
-
-                else if (firstValue == 1 && secondValue == 0 && secondValue == 0)
-
-                {
-                    result = firstValue  + " day";
-                }
-
-                else if (firstValue == 1 && secondValue == 5 && secondValue == 05)
-
-                {
-                    result = firstValue + " " + " and " + "half" + " day";
-                }
-
-
-                else if (firstValue > 1 && secondValue == 5 && secondValue == 05)
-
-                {
-                    result = firstValue + " " + " and " + "half" + " days";
-                }
-                else
-                {
-                    result = firstValue.ToString() + " days";
-                }
-
-            
-
-            return result;
-        
-        }
-
         private double GetNumberOfLeaveDays(string intitDepartureHour,string intitArrivalHour)
         {
             double Leavedays = 0;
@@ -434,6 +381,9 @@ namespace UWPRLeaveManagement
 
         {
 
+            //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.IndexOf(0);
+            //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.IndexOf(1);
+
             await HolidaySync.GetHolidayListAsnc(HolidayDates);
 
             //TimeResult.Text = await LeaveTransactionPost.LeaveDataPostAsync
@@ -450,9 +400,14 @@ namespace UWPRLeaveManagement
             //    "1"
             //    );
 
+          
+
             DepartureDateCalendar.MinDate = DateTime.Now;
 
             ArrivalDateCalendar.MinDate = DateTime.Now;
+
+            
+
 
         }
 
@@ -462,7 +417,7 @@ namespace UWPRLeaveManagement
         private void DepartureDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
 
         {
-            if (Result == null) return;
+            if (DepartureDateCalendar.Date == null) return;
             ArrivalDateCalendar.Date = sender.Date.Value.AddHours(24); // .Date.Value.AddDays(1).Date;
 
             ArrivalDateCalendar.MinDate = sender.Date.Value;
@@ -472,9 +427,9 @@ namespace UWPRLeaveManagement
             string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
-                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
-            
+            LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
+            Result.Text = LeavePeriod + " Days";
         }
 
 
@@ -483,35 +438,45 @@ namespace UWPRLeaveManagement
 
         {
 
-            if (Result == null) return;
+            if (ArrivalDateCalendar.Date == null) return;
 
             string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
             
-                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
-            
+                LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            Result.Text = LeavePeriod + " Days";
 
         }
 
         private void DeparturetimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Result == null) return;
-            var SndrSel = (ComboBox)sender;
-            var DepartureItem = (ComboBoxItem)SndrSel.SelectedItem;
-            string intitDepartureHour = DepartureItem.Content.ToString();
-            string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+            try
+            {
+                var SndrSel = (ComboBox)sender;
+                var DepartureItem = (ComboBoxItem)SndrSel.SelectedItem;
+                string intitDepartureHour = DepartureItem.Content.ToString();
+
+
+                string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+
+                LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+
+                Result.Text = LeavePeriod + " Days";
+            }
+            catch
+            {
+
+            }
             
-                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
-
-        
-
-
         }
 
         private void ArrivaltimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Result == null) return;
+        
+            try
+            {
+                
             var SndrSel = (ComboBox)sender;
             var ArrivalItem = (ComboBoxItem)SndrSel.SelectedItem;
             string intitArrivalHour = ArrivalItem.Content.ToString();
@@ -519,8 +484,13 @@ namespace UWPRLeaveManagement
 
         
 
-                Result.Text = GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
-        
+                LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            Result.Text = LeavePeriod + " Days" ;
+            }
+            catch
+            {
+
+            }
 
         }
     }

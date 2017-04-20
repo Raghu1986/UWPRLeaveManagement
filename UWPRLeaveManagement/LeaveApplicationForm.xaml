@@ -10,34 +10,55 @@
     >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <StackPanel>
+
+        <RelativePanel Margin="20,20,5,0" Grid.Row="1">
+
+
+
+            <TextBlock Text="Departure Date"
+                       Name="DepartureDateCalendarTextBlock"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignTopWithPanel="True"
+                       FontSize="18"
+                       FontStyle="Normal"
+                       FontWeight="SemiBold"
+                       
+                       />
+
 
             <CalendarDatePicker Name="DepartureDateCalendar"
-
-                            IsTodayHighlighted="True"
-
-                            DateChanged="DepartureDateCalendar_DateChanged"
-
-                            
-
-                            />
-
-            <CalendarDatePicker Name="ArrivalDateCalendar"
-
-                            IsTodayHighlighted="True"
-                                
+                                IsTodayHighlighted="True"
+                                DateChanged="DepartureDateCalendar_DateChanged"
+                                Width="180"
+                                Margin="22,0,0,0"
+                                RelativePanel.RightOf ="DepartureDateCalendarTextBlock"
                                 
 
-                            IsCalendarOpen="False"
-
-                            Margin="0,20,0,0"
-
-                            DateChanged="ArrivalDateCalendar_DateChanged"    
-
+                                
                             />
 
-            <ComboBox Name="DeparturetimeComboBox" SelectionChanged="DeparturetimeComboBox_SelectionChanged" >
+            <TextBlock Text="Departure Time" 
+                       Name="DeparturetimeTextBlock"
+                       RelativePanel.Below="DepartureDateCalendarTextBlock"
+                       FontSize="18"
+                       FontStyle="Normal"
+                       FontWeight="SemiBold"
+                       Margin="0,30,0,0"
+                       
+                       />
+
+            <ComboBox Name="DeparturetimeComboBox"
+                      SelectionChanged="DeparturetimeComboBox_SelectionChanged" 
+                      RelativePanel.RightOf="DeparturetimeTextBlock"
+                      RelativePanel.Below="DepartureDateCalendar"
+                      Margin="20,20,0,0"
+                      Width="180"
+                      >
                 <ComboBoxItem Content="10:00 AM" IsSelected="True" />
                 <ComboBoxItem Content="10:30 AM" />
                 <ComboBoxItem Content="11:00 AM" />
@@ -57,9 +78,49 @@
                 <ComboBoxItem Content="06:00 PM" />
                 <ComboBoxItem Content="06:30 PM" />
                 <ComboBoxItem Content="07:00 PM" />
+
             </ComboBox>
 
-            <ComboBox Name="ArrivaltimeComboBox" SelectionChanged="ArrivaltimeComboBox_SelectionChanged" >
+            <TextBlock Text="Arrival Date" 
+                       Name="ArrivalDateTextBlock"
+                       RelativePanel.Below="DeparturetimeTextBlock"
+                       FontSize="18"
+                       FontStyle="Normal"
+                       FontWeight="SemiBold"
+                       Margin="0,30,0,0"
+                       
+                       />
+
+            <CalendarDatePicker Name="ArrivalDateCalendar"
+                                IsTodayHighlighted="True"
+                                IsCalendarOpen="False"
+                                DateChanged="ArrivalDateCalendar_DateChanged"    
+                                RelativePanel.RightOf="ArrivalDateTextBlock"
+                                RelativePanel.Below="DeparturetimeComboBox"
+                                Margin="52,20,0,0"
+                                Width="180"
+                            />
+
+            <TextBlock Text="Arrival Time" 
+                       Name="ArrivaltimeTextBlock"
+                       RelativePanel.Below="ArrivalDateTextBlock"
+                       FontSize="18"
+                       FontStyle="Normal"
+                       FontWeight="SemiBold"
+                       Margin="0,30,0,0"
+                       
+                       
+                       />
+
+
+
+            <ComboBox Name="ArrivaltimeComboBox" 
+                      SelectionChanged="ArrivaltimeComboBox_SelectionChanged" 
+                      RelativePanel.RightOf="ArrivaltimeTextBlock"
+                      RelativePanel.Below="ArrivalDateCalendar"
+                      Margin="50,20,0,0"
+                      Width="180"
+                      >
                 <ComboBoxItem Content="10:00 AM" />
                 <ComboBoxItem Content="10:30 AM" />
                 <ComboBoxItem Content="11:00 AM" />
@@ -79,15 +140,78 @@
                 <ComboBoxItem Content="06:00 PM" />
                 <ComboBoxItem Content="06:30 PM" />
                 <ComboBoxItem Content="07:00 PM" IsSelected="True" />
-            </ComboBox> 
- 
-            <TextBlock Name="Result" />
-            <TextBlock Name="TimeResult" />
+            </ComboBox>
 
+            <TextBlock Text="Leave Type" 
+                       Name="LeaveTypeTextBlock"
+                       RelativePanel.Below="ArrivaltimeTextBlock"
+                       FontSize="18"
+                       FontStyle="Normal"
+                       FontWeight="SemiBold"
+                       Margin="0,30,0,0"
+                       
+                       />
 
+            <ComboBox Name="LeaveTypeComboBox"
+                      SelectionChanged="DeparturetimeComboBox_SelectionChanged"
+                      RelativePanel.RightOf="LeaveTypeTextBlock"
+                      RelativePanel.Below="ArrivaltimeComboBox"
+                      Margin="58,20,0,0"
+                      Width="180"
+                      >
+                <ComboBoxItem Content="Sick Leave" IsSelected="True" />
+                <ComboBoxItem Content="Family Responsibility Leave" />
+                <ComboBoxItem Content="Study Leave" />
+                <ComboBoxItem Content="Maternity Leave" />
+                <ComboBoxItem Content="Leave for religious" />
+                <ComboBoxItem Content="Other" />
+            </ComboBox>
 
-        </StackPanel>
+            <TextBox Name="DescriptionTextBox" 
+                     PlaceholderText="Remarks"
+                     RelativePanel.AlignLeftWith="LeaveTypeTextBlock"
+                     RelativePanel.Below="LeaveTypeTextBlock"
+                     FontSize="18"
+                     FontStyle="Normal"
+                     FontWeight="SemiBold"
+                     Width="300"
+                     Height="100"
+                     Margin="10,20,0,0"
+                     />
+            <Button Name="ApplyButton"
+                    Content="Apply"
+                    Foreground="White"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Background="#FF7D31C3"
+                    RelativePanel.Below="DescriptionTextBox"
+                    RelativePanel.AlignHorizontalCenterWith="DescriptionTextBox"
+                    Width="100"
 
+                    Margin="0,30,0,0"
+                    
+                    />
+        </RelativePanel>
+        
+        <RelativePanel  Grid.Row="0" >
+            <TextBlock Text="Leave period :  "
+                       FontSize="20"
+                       Foreground="#FF7D31C3"
+                       FontWeight="Bold"
+                       Name="LeaveperiodTextblock"
+                       RelativePanel.AlignLeftWithPanel="True"                    
+                       Margin="50,0,0,0"
+
+                       />
+            
+            <TextBlock Name="Result"
+                       RelativePanel.RightOf="LeaveperiodTextblock"                    
+                       Foreground="#FF7D31C3"
+                       FontSize="20"
+                       FontWeight="SemiBold" FocusVisualPrimaryBrush="#FF881CE2"
+                       
+                       />
+        </RelativePanel>
 
 
     </Grid>
