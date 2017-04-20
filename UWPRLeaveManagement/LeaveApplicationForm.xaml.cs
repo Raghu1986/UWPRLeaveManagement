@@ -406,7 +406,7 @@ namespace UWPRLeaveManagement
 
             ArrivalDateCalendar.MinDate = DateTime.Now;
 
-            
+            DepartureDateCalendar.Date = DateTime.Now;
 
 
         }
@@ -429,7 +429,7 @@ namespace UWPRLeaveManagement
 
             LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
-            Result.Text = LeavePeriod + " Days";
+            Result.Text = "Leave Period: " + LeavePeriod + " Days";
         }
 
 
@@ -444,8 +444,8 @@ namespace UWPRLeaveManagement
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
 
             
-                LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
-            Result.Text = LeavePeriod + " Days";
+            LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
+            Result.Text = "Leave Period: " + LeavePeriod + " Days";
 
         }
 
@@ -462,7 +462,7 @@ namespace UWPRLeaveManagement
 
                 LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
-                Result.Text = LeavePeriod + " Days";
+                Result.Text = "Leave Period: " + LeavePeriod + " Days";
             }
             catch
             {
@@ -485,7 +485,7 @@ namespace UWPRLeaveManagement
         
 
                 LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
-            Result.Text = LeavePeriod + " Days" ;
+                Result.Text = "Leave Period: " + LeavePeriod + " Days" ;
             }
             catch
             {

@@ -25,8 +25,8 @@
                        RelativePanel.AlignLeftWithPanel="True"
                        RelativePanel.AlignTopWithPanel="True"
                        FontSize="18"
-                       FontStyle="Normal"
-                       FontWeight="SemiBold"
+                       FontWeight="Normal"
+                       Foreground="Black"
                        
                        />
 
@@ -46,8 +46,8 @@
                        Name="DeparturetimeTextBlock"
                        RelativePanel.Below="DepartureDateCalendarTextBlock"
                        FontSize="18"
-                       FontStyle="Normal"
-                       FontWeight="SemiBold"
+                       FontWeight="Normal"
+                       Foreground="Black"
                        Margin="0,30,0,0"
                        
                        />
@@ -85,8 +85,8 @@
                        Name="ArrivalDateTextBlock"
                        RelativePanel.Below="DeparturetimeTextBlock"
                        FontSize="18"
-                       FontStyle="Normal"
-                       FontWeight="SemiBold"
+                       FontWeight="Normal"
+                       Foreground="Black"
                        Margin="0,30,0,0"
                        
                        />
@@ -105,8 +105,8 @@
                        Name="ArrivaltimeTextBlock"
                        RelativePanel.Below="ArrivalDateTextBlock"
                        FontSize="18"
-                       FontStyle="Normal"
-                       FontWeight="SemiBold"
+                       FontWeight="Normal"
+                       Foreground="Black"
                        Margin="0,30,0,0"
                        
                        
@@ -146,8 +146,8 @@
                        Name="LeaveTypeTextBlock"
                        RelativePanel.Below="ArrivaltimeTextBlock"
                        FontSize="18"
-                       FontStyle="Normal"
-                       FontWeight="SemiBold"
+                       FontWeight="Normal"
+                       Foreground="Black"
                        Margin="0,30,0,0"
                        
                        />
@@ -171,6 +171,7 @@
                      PlaceholderText="Remarks"
                      RelativePanel.AlignLeftWith="LeaveTypeTextBlock"
                      RelativePanel.Below="LeaveTypeTextBlock"
+                     TextWrapping="Wrap"
                      FontSize="18"
                      FontStyle="Normal"
                      FontWeight="SemiBold"
@@ -181,9 +182,9 @@
             <Button Name="ApplyButton"
                     Content="Apply"
                     Foreground="White"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Background="#FF7D31C3"
+                    FontSize="18"
+                    FontWeight="SemiLight"
+                    Background="#FF007ACC"
                     RelativePanel.Below="DescriptionTextBox"
                     RelativePanel.AlignHorizontalCenterWith="DescriptionTextBox"
                     Width="100"
@@ -194,7 +195,7 @@
         </RelativePanel>
         
         <RelativePanel  Grid.Row="0" >
-            <TextBlock Text="Leave period :  "
+            <!--<TextBlock Text="Leave period :  "
                        FontSize="20"
                        Foreground="#FF7D31C3"
                        FontWeight="Bold"
@@ -202,14 +203,15 @@
                        RelativePanel.AlignLeftWithPanel="True"                    
                        Margin="50,0,0,0"
 
-                       />
+                       />-->
             
             <TextBlock Name="Result"
-                       RelativePanel.RightOf="LeaveperiodTextblock"                    
+                       RelativePanel.AlignLeftWithPanel="True" 
                        Foreground="#FF7D31C3"
                        FontSize="20"
-                       FontWeight="SemiBold" FocusVisualPrimaryBrush="#FF881CE2"
-                       
+                       FontWeight="Normal"
+                       FocusVisualPrimaryBrush="#FFAA6EDC"
+                       Margin="20,0,0,0"
                        />
         </RelativePanel>
 
