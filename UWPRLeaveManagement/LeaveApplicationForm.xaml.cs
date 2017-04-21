@@ -33,6 +33,7 @@ namespace UWPRLeaveManagement
     {
 
         public ObservableCollection<HolidayMaster> HolidayDates { get; set; }
+        public ObservableCollection<EmployeeMaster> EmployeeCharacters { get; set; }
         public string LeavePeriod;
 
 
@@ -45,8 +46,9 @@ namespace UWPRLeaveManagement
             this.InitializeComponent();
 
             HolidayDates = new ObservableCollection<HolidayMaster>();
+            EmployeeCharacters = new ObservableCollection<EmployeeMaster>();
 
-             //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.Count - 1;
+            //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.Count - 1;
             // DeparturetimeComboBox.SelectedIndex = 0;
 
         }
@@ -381,9 +383,6 @@ namespace UWPRLeaveManagement
 
         {
 
-            //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.IndexOf(0);
-            //ArrivaltimeComboBox.SelectedIndex = ArrivaltimeComboBox.Items.IndexOf(1);
-
             await HolidaySync.GetHolidayListAsnc(HolidayDates);
 
             //TimeResult.Text = await LeaveTransactionPost.LeaveDataPostAsync
@@ -417,7 +416,11 @@ namespace UWPRLeaveManagement
         private void DepartureDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
 
         {
-            if (DepartureDateCalendar.Date == null) return;
+            if (DepartureDateCalendar.Date == null)
+            {
+                DepartureDateCalendar.Date = DateTime.Now;
+                ArrivalDateCalendar.Date = sender.Date.Value.AddHours(24);
+            }
             ArrivalDateCalendar.Date = sender.Date.Value.AddHours(24); // .Date.Value.AddDays(1).Date;
 
             ArrivalDateCalendar.MinDate = sender.Date.Value;
@@ -438,7 +441,12 @@ namespace UWPRLeaveManagement
 
         {
 
-            if (ArrivalDateCalendar.Date == null) return;
+            if (ArrivalDateCalendar.Date == null)
+            {
+                //DepartureDateCalendar.Date = DateTime.Now;
+                ArrivalDateCalendar.Date = DepartureDateCalendar.Date.Value.AddHours(24);
+                
+            }
 
             string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
             string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
@@ -491,6 +499,61 @@ namespace UWPRLeaveManagement
             {
 
             }
+
+        }
+
+        private async void ApplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            string Empid = "201112005";
+            await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, Empid);
+
+            string intitDeparturedate = DepartureDateCalendar.Date.ToString();
+            string intitArrivaldate = ArrivalDateCalendar.Date.ToString();
+
+            string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
+            string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+
+
+            DateTime dt = DateTime.ParseExact(DepartureDateCalendar.Date.ToString(), "dd-mm-yyyy hh:mm:ss tt ", CultureInfo.InvariantCulture);
+
+            string s = dt.ToString("dd/M/yyyy", CultureInfo.InvariantCulture);
+
+
+            string EmpFirstName="";
+            string EmpLastName="";
+            string EmpDesignation="";
+            string EmpReportingTo="";
+            string EmpTeam="";
+            string LeavePeriodC = "";
+
+
+            LeavePeriodC = GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString();
+
+            
+
+
+                EmpFirstName = EmployeeCharacters[0].EmpFirstName;
+                EmpLastName = EmployeeCharacters[0].EmpLastName;
+                EmpDesignation = EmployeeCharacters[0].EmpDesignation;
+                EmpReportingTo = EmployeeCharacters[0].EmpReportingTo;
+                EmpTeam = EmployeeCharacters[0].EmpTeam;
+                
+
+
+            
+            Result.Text = await LeaveTransactionPost.LeaveDataPostAsync
+                (
+                Empid, EmpFirstName,
+                EmpLastName, EmpDesignation,
+                EmpReportingTo, EmpTeam,
+                "25-04-2017", "10:00 AM",
+                "30-04-2017", "02:30 PM",
+                "19-04-2017", "12:04 PM",
+                "3 and half days", "Health",
+                "I am not feeling well so shall i take leave on thease days", "Madhusudan",
+                "20-04-2017", "11:00 AM",
+                "1"
+                );
 
         }
     }

@@ -13,21 +13,32 @@ namespace UWPRLeaveManagement.Models
 {
     public  class EmployeeSync
     {
-        private async static Task<string> CallEmployeeAsync()
+        private async static Task<string> CallEmployeeAsync(string EmpId)
         {
             string EmpSortName = "{EmpFirstName:1}";
+            string EmpIdvar = "{'EmpId':" + "'" + EmpId + "'" + "}";
             var http = new HttpClient();
-            string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?s={2}&apiKey={3}", Common.DBName, Common.CollectionName, EmpSortName, Common.ApiKey);
+            string url;
+            if (EmpId=="All")
+            {
+                url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?s={2}&apiKey={3}", Common.DBName, Common.CollectionName, EmpSortName, Common.ApiKey);
+            }
+            else
+            {
+                url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.DBName, Common.CollectionName, EmpIdvar, Common.ApiKey);
+            }
+             
+
             HttpResponseMessage response = await http.GetAsync(new Uri(url));
             //var jsonString = await response.Content.ReadAsStringAsync();
             return await response.Content.ReadAsStringAsync();
 
         }
 
-        public async static Task GetAllEmployeesAsnc(ObservableCollection<EmployeeMaster> EmployeeCharacters)
+        public async static Task GetAllEmployeesAsnc(ObservableCollection<EmployeeMaster> EmployeeCharacters, string EmpId)
         {
 
-            var jsonString = await CallEmployeeAsync();
+            var jsonString = await CallEmployeeAsync(EmpId);
             var allEmployess = JsonConvert.DeserializeObject<List<EmployeeMaster>>(jsonString);
             EmployeeCharacters.Clear();
            // allEmployess.ForEach(p => EmployeeCharacters.Add(p));

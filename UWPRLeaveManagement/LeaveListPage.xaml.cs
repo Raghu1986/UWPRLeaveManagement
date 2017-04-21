@@ -39,7 +39,7 @@ namespace UWPRLeaveManagement
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters);
+            await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
         }
     }
 }

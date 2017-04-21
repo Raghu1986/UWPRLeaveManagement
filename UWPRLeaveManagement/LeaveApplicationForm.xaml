@@ -188,8 +188,8 @@
                     RelativePanel.Below="DescriptionTextBox"
                     RelativePanel.AlignHorizontalCenterWith="DescriptionTextBox"
                     Width="100"
-
                     Margin="0,30,0,0"
+                    Click="ApplyButton_Click"
                     
                     />
         </RelativePanel>
