@@ -507,16 +507,9 @@ namespace UWPRLeaveManagement
             string Empid = "201112005";
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, Empid);
 
-            string intitDeparturedate = DepartureDateCalendar.Date.ToString();
-            string intitArrivaldate = ArrivalDateCalendar.Date.ToString();
+          
 
-            string intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
-            string intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
-
-
-            DateTime dt = DateTime.ParseExact(DepartureDateCalendar.Date.ToString(), "dd-mm-yyyy hh:mm:ss tt ", CultureInfo.InvariantCulture);
-
-            string s = dt.ToString("dd/M/yyyy", CultureInfo.InvariantCulture);
+            
 
 
             string EmpFirstName="";
@@ -524,12 +517,24 @@ namespace UWPRLeaveManagement
             string EmpDesignation="";
             string EmpReportingTo="";
             string EmpTeam="";
-            string LeavePeriodC = "";
+            string intitDeparturedate="";
+            string intitDepartureHour = "";
+            string intitArrivaldate = "";
+            string intitArrivalHour = "";
+            string AppliedDate = "";
+            string AppliedTime = "";
+            string LeavePeriodF = "";
+            string LeaveType = "";
+            string Description = "";
+            string ApprovedBy = "";
+            string ApprovedDate = "";
+            string ApprovedTime = "";
+            string LeaveStatus = "";
 
 
-            LeavePeriodC = GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString();
 
-            
+
+
 
 
                 EmpFirstName = EmployeeCharacters[0].EmpFirstName;
@@ -537,23 +542,43 @@ namespace UWPRLeaveManagement
                 EmpDesignation = EmployeeCharacters[0].EmpDesignation;
                 EmpReportingTo = EmployeeCharacters[0].EmpReportingTo;
                 EmpTeam = EmployeeCharacters[0].EmpTeam;
-                
 
 
-            
-            Result.Text = await LeaveTransactionPost.LeaveDataPostAsync
+
+                intitDeparturedate = DateTimeToDateIndian.GetDateFromDateTime(DepartureDateCalendar.Date.Value.ToString("G"));
+                intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
+                intitArrivaldate = DateTimeToDateIndian.GetDateFromDateTime(ArrivalDateCalendar.Date.Value.ToString("G"));
+                intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
+                AppliedDate= DateTimeToDateIndian.GetDateFromDateTime(DateTime.Now.ToString("G"));
+                AppliedTime = DateTime.Now.ToString("hh:mm tt");
+                LeavePeriodF = GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString();
+                LeaveType = LeaveTypeComboBox.SelectionBoxItem.ToString();
+                Description = DescriptionTextBox.Text.ToString();
+                LeaveStatus = "1";
+
+
+            if (Convert.ToInt32(LeavePeriodF)>0.5)
+            {
+                Result.Text = await LeaveTransactionPost.LeaveDataPostAsync
                 (
                 Empid, EmpFirstName,
                 EmpLastName, EmpDesignation,
                 EmpReportingTo, EmpTeam,
-                "25-04-2017", "10:00 AM",
-                "30-04-2017", "02:30 PM",
-                "19-04-2017", "12:04 PM",
-                "3 and half days", "Health",
-                "I am not feeling well so shall i take leave on thease days", "Madhusudan",
-                "20-04-2017", "11:00 AM",
-                "1"
+                intitDeparturedate, intitDepartureHour,
+                intitArrivaldate, intitArrivalHour,
+                AppliedDate, AppliedTime,
+                LeavePeriodF, LeaveType,
+                Description, ApprovedBy,
+                ApprovedDate, ApprovedTime,
+                LeaveStatus
                 );
+
+            }
+            else
+            {
+                Result.Text = "Your leave period less than half day,Please take oral approve";
+            }
+
 
         }
     }
