@@ -13,10 +13,47 @@ namespace UWPRLeaveManagement.Models
         {
             string result = "";
 
-            DateTime dt = DateTime.ParseExact(dateString, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            result = dt.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dateString, "dd-MM-yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                result = dt.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                try
+                {
+                    DateTime dt = DateTime.ParseExact(dateString, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    result = dt.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    try
+                    {
+                        DateTime dt = DateTime.ParseExact(dateString, "dd-MM-yyyy H:mm:ss", CultureInfo.InvariantCulture);
+                        result = dt.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            DateTime dt = DateTime.ParseExact(dateString, "dd-MM-yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+                            result = dt.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        }
+                        catch
+                        {
+
+                        }
+                        
+                    }
+                   //result=exAM.Message;
+                }
+                
+            }
+            
+            
 
             return result;
         }
+
     }
 }

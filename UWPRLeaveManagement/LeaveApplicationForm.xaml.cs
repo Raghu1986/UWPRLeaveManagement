@@ -507,10 +507,6 @@ namespace UWPRLeaveManagement
             string Empid = "201112005";
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, Empid);
 
-          
-
-            
-
 
             string EmpFirstName="";
             string EmpLastName="";
@@ -530,6 +526,8 @@ namespace UWPRLeaveManagement
             string ApprovedDate = "";
             string ApprovedTime = "";
             string LeaveStatus = "";
+            string TransPkey = "";
+
 
 
 
@@ -556,22 +554,26 @@ namespace UWPRLeaveManagement
                 Description = DescriptionTextBox.Text.ToString();
                 LeaveStatus = "1";
 
+                TransPkey = RandomNumGen.GenerateRandomNumber().ToString() + Empid;
+
 
             if (Convert.ToInt32(LeavePeriodF)>0.5)
             {
                 Result.Text = await LeaveTransactionPost.LeaveDataPostAsync
                 (
-                Empid, EmpFirstName,
-                EmpLastName, EmpDesignation,
-                EmpReportingTo, EmpTeam,
-                intitDeparturedate, intitDepartureHour,
-                intitArrivaldate, intitArrivalHour,
-                AppliedDate, AppliedTime,
-                LeavePeriodF, LeaveType,
-                Description, ApprovedBy,
-                ApprovedDate, ApprovedTime,
-                LeaveStatus
+                TransPkey, Empid,
+                EmpFirstName, EmpLastName,
+                EmpDesignation, EmpReportingTo,
+                EmpTeam, intitDeparturedate,
+                intitDepartureHour, intitArrivaldate,
+                intitArrivalHour, AppliedDate,
+                AppliedTime, LeavePeriodF,
+                LeaveType, Description,
+                ApprovedBy, ApprovedDate,
+                ApprovedTime, LeaveStatus
                 );
+
+                
 
             }
             else

@@ -29,8 +29,8 @@ namespace UWPRLeaveManagement
         public MainPage()
         {
             this.InitializeComponent();
-            //MainFrame.Navigate(typeof(LeaveListPage));
-             MainFrame.Navigate(typeof(LeaveApplicationForm));
+            //MainFrame.Navigate(typeof(LeaveListPageAdmin));
+            MainFrame.Navigate(typeof(LeaveApplicationForm));
 
         }
 

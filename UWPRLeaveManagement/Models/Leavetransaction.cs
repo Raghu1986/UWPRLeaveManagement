@@ -18,6 +18,9 @@ namespace UWPRLeaveManagement.Models
     public class Leavetransaction
     {
         [DataMember]
+        public string TransPkey { get; set; }
+
+        [DataMember]
         public string EmpId { get; set; }
 
         [DataMember]

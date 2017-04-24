@@ -19,7 +19,10 @@ namespace UWPRLeaveManagement.Models
         [DataContract]
         public class EmployeeMaster
         {
-            
+
+            [DataMember]
+            public string EmpPkey { get; set; }
+
             [DataMember]
             public string EmpId { get; set; }
 

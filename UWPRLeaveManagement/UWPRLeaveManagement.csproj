@@ -99,8 +99,8 @@
     <Compile Include="LeaveApplicationForm.xaml.cs">
       <DependentUpon>LeaveApplicationForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LeaveListPage.xaml.cs">
-      <DependentUpon>LeaveListPage.xaml</DependentUpon>
+    <Compile Include="LeaveListPageAdmin.xaml.cs">
+      <DependentUpon>LeaveListPageAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -114,6 +114,7 @@
     <Compile Include="Models\HolidaySync.cs" />
     <Compile Include="Models\Leavetransaction.cs" />
     <Compile Include="Models\LeaveTransactionPost.cs" />
+    <Compile Include="Models\RandomNumGen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LeaveListPage.xaml">
+    <Page Include="LeaveListPageAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
