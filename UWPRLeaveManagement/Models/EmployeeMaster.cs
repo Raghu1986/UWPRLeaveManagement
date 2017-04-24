@@ -21,6 +21,9 @@ namespace UWPRLeaveManagement.Models
         {
 
             [DataMember]
+            public Id _id { get; set; }
+
+            [DataMember]
             public string EmpPkey { get; set; }
 
             [DataMember]

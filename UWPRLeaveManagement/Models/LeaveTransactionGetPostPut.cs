@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -8,8 +9,37 @@ using System.Threading.Tasks;
 
 namespace UWPRLeaveManagement.Models
 {
-    public class LeaveTransactionPost
+    public class LeaveTransactionGetPostPut
     {
+        private async static Task<string> CallLeaveTransactionsAsync(string EmpId)
+        {
+            string LeaveTransactionSortName = "{EmpFirstName:1}";
+            string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, "4");
+            var http = new HttpClient();
+            string url;
+            if (EmpId == "All")
+            {
+                url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?s={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, LeaveTransactionSortName, Common.ApiKey);
+            }
+            else
+            {
+                url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, EmpIdvar, Common.ApiKey);
+            }
+            HttpResponseMessage response = await http.GetAsync(new Uri(url));
+            return await response.Content.ReadAsStringAsync();
+
+        }
+
+        public async static Task GetLeaveTransactionAsnc(ObservableCollection<Leavetransaction> Leavetransactions, string EmpId)
+        {
+
+            var jsonString = await CallLeaveTransactionsAsync(EmpId);
+            var allLeavetransactions = JsonConvert.DeserializeObject<List<Leavetransaction>>(jsonString);
+            Leavetransactions.Clear();
+            allLeavetransactions.ForEach(p => Leavetransactions.Add(p));
+
+        }
+
 
         public static async Task<string> LeaveDataPostAsync
 
@@ -27,7 +57,7 @@ namespace UWPRLeaveManagement.Models
             )
 
         {
-                        
+
 
             var http = new HttpClient();
             string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?apiKey={2}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, Common.ApiKey);
@@ -56,7 +86,7 @@ namespace UWPRLeaveManagement.Models
         {
             var http = new HttpClient();
 
-            
+
 
             string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}/{2}?apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, condition, Common.ApiKey);
 
@@ -65,8 +95,8 @@ namespace UWPRLeaveManagement.Models
             return ResponseBody.StatusCode.ToString();
         }
 
-}
+    }
 
-    
+
 
 }

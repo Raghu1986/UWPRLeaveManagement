@@ -560,7 +560,7 @@ namespace UWPRLeaveManagement
 
             if (Convert.ToInt32(LeavePeriodF)>0.5)
             {
-                Result.Text = await LeaveTransactionPost.LeaveDataPostAsync
+                Result.Text = await LeaveTransactionGetPostPut.LeaveDataPostAsync
                 (
                 TransPkey, Empid,
                 EmpFirstName, EmpLastName,

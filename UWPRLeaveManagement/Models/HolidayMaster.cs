@@ -18,6 +18,9 @@ namespace UWPRLeaveManagement.Models
     public class HolidayMaster
     {
         [DataMember]
+        public HId _id { get; set; }
+
+        [DataMember]
         public string HDate { get; set; }
 
         [DataMember]

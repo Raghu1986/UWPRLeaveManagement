@@ -18,7 +18,7 @@ namespace UWPRLeaveManagement.Models
     public class Leavetransaction
     {
         [DataMember]
-        public LId Primaryid { get;set;}
+        public LId _id { get; set; }
 
         [DataMember]
         public string TransPkey { get; set; }

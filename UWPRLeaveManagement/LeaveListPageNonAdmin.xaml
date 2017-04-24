@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="UWPRLeaveManagement.LeaveListPageNonAdmin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPRLeaveManagement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:data="using:UWPRLeaveManagement.Models"
+    Loaded="Page_Loaded"
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
+            <ListView Name="holidayListView"
+                      SelectionMode="None"
+                      ItemsSource="{x:Bind LeaveTransactions}"
+                      Margin="0,10,0,0"
+                      HorizontalAlignment="Center"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Leavetransaction" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind _id.Oid}" />
+                            <TextBlock Text="{x:Bind EmpFirstName}" TextWrapping="Wrap" Margin="05,0,0,0" />
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        
+        
+    </Grid>
+</Page>

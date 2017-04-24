@@ -16,7 +16,7 @@ namespace UWPRLeaveManagement.Models
         private async static Task<string> CallEmployeeAsync(string EmpId)
         {
             string EmpSortName = "{EmpFirstName:1}";
-            string EmpIdvar = "{'EmpId':" + "'" + EmpId + "'" + "}";
+            string EmpIdvar =  String.Format("{{\"EmpId\":\"{0}\"}}", EmpId, "4");
             var http = new HttpClient();
             string url;
             if (EmpId=="All")
