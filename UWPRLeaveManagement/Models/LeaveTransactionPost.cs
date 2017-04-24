@@ -12,21 +12,22 @@ namespace UWPRLeaveManagement.Models
     {
 
         public static async Task<string> LeaveDataPostAsync
-            
+
             (
             string TransPkey, string EmpId,
-            string EmpFirstName,string EmpLastName, 
+            string EmpFirstName, string EmpLastName,
             string EmpDesignation, string EmpReportingTo,
-            string EmpTeam,string DepartureDate,
-            string DepartureTime,string ArrivalDate,
-            string ArrivalTime,string AppliedDate,
+            string EmpTeam, string DepartureDate,
+            string DepartureTime, string ArrivalDate,
+            string ArrivalTime, string AppliedDate,
             string AppliedTime, string LeavePeriod,
-            string LeaveType,string Description,
-            string ApprovedBy,string ApprovedDate,
-            string ApprovedTime,string LeaveStatus
+            string LeaveType, string Description,
+            string ApprovedBy, string ApprovedDate,
+            string ApprovedTime, string LeaveStatus
             )
 
         {
+                        
 
             var http = new HttpClient();
             string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?apiKey={2}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, Common.ApiKey);
@@ -38,7 +39,7 @@ namespace UWPRLeaveManagement.Models
             http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             var ResponseBody = await http.PostAsync(address, new StringContent(SerializedData, Encoding.UTF8, "application/json"));
 
-            if(ResponseBody.StatusCode.ToString()=="OK")
+            if (ResponseBody.StatusCode.ToString() == "OK")
             {
                 return "Leave Applied";
             }
@@ -46,10 +47,26 @@ namespace UWPRLeaveManagement.Models
             {
                 return "Leave not applied";
             }
-            
-            
+
+
 
         }
 
-    }
+        public static async Task<string> LeaveTransactionPutAsync(string condition, string setvalue)
+        {
+            var http = new HttpClient();
+
+            
+
+            string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}/{2}?apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, condition, Common.ApiKey);
+
+            http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var ResponseBody = await http.PutAsync(url.ToString(), new StringContent(setvalue.ToString(), Encoding.UTF8, "application/json"));
+            return ResponseBody.StatusCode.ToString();
+        }
+
+}
+
+    
+
 }

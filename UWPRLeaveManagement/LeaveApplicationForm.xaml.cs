@@ -508,6 +508,13 @@ namespace UWPRLeaveManagement
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, Empid);
 
 
+           // not used //string condition = String.Format("{{\"_id\":\"{0}\"}}", "58fdd151c2ef16688202ffa8");
+
+            //Update the data working code
+            //string condition = "58fde913bd966f74dc8f846d";
+            //string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "4");
+            //await LeaveTransactionPost.LeaveTransactionPutAsync(condition, setValue);
+
             string EmpFirstName="";
             string EmpLastName="";
             string EmpDesignation="";
@@ -527,12 +534,6 @@ namespace UWPRLeaveManagement
             string ApprovedTime = "";
             string LeaveStatus = "";
             string TransPkey = "";
-
-
-
-
-
-
 
 
                 EmpFirstName = EmployeeCharacters[0].EmpFirstName;
@@ -573,7 +574,7 @@ namespace UWPRLeaveManagement
                 ApprovedTime, LeaveStatus
                 );
 
-                
+
 
             }
             else
