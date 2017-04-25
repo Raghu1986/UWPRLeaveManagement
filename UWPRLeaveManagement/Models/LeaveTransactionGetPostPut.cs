@@ -14,7 +14,6 @@ namespace UWPRLeaveManagement.Models
         private async static Task<string> CallLeaveTransactionsAsync(string EmpId, string LeaveStatus)
         {
             string LeaveTransactionSortName = "{EmpFirstName:1}";
-            string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, LeaveStatus);
             var http = new HttpClient();
             string url;
             if (EmpId == "All")
@@ -23,6 +22,7 @@ namespace UWPRLeaveManagement.Models
             }
             else
             {
+                string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, LeaveStatus);
                 url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, EmpIdvar, Common.ApiKey);
             }
             HttpResponseMessage response = await http.GetAsync(new Uri(url));

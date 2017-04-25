@@ -25,11 +25,13 @@ namespace UWPRLeaveManagement
     public sealed partial class LeaveListPageAdmin : Page
     {
         public ObservableCollection<EmployeeMaster> EmployeeCharacters { get; set; }
+        public ObservableCollection<Leavetransaction> LeaveTransactions { get; set; }
 
         public LeaveListPageAdmin()
         {
-            EmployeeCharacters = new ObservableCollection<EmployeeMaster>();
             this.InitializeComponent();
+            EmployeeCharacters = new ObservableCollection<EmployeeMaster>();
+            LeaveTransactions = new ObservableCollection<Leavetransaction>();
         }
 
         private void ButtonHamburgerMain_Click(object sender, RoutedEventArgs e)
@@ -40,6 +42,22 @@ namespace UWPRLeaveManagement
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "");
+
+        }
+
+        
+
+        private async void EmployessListview_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var SelectedEmployee=(EmployeeMaster)e.ClickedItem;
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, SelectedEmployee.EmpId.ToString(), "4");
+            
+        }
+
+        private async void AllEmployeeListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "");
         }
     }
 }

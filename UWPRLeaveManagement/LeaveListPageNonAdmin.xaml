@@ -20,20 +20,38 @@
                   ItemsSource="{x:Bind LeaveTransactions}"
                   Margin="0,10,0,0"
                   HorizontalAlignment="Left"
+                  
                   >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Leavetransaction" >
                     <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="4" UseLayoutRounding="True">
                         <RelativePanel>
 
-                            <StackPanel RelativePanel.AlignLeftWithPanel="True" Margin="20,10,0,0" >
+                            <StackPanel RelativePanel.AlignLeftWithPanel="True" Margin="20,10,0,0" Orientation="Vertical" >
                                 <TextBlock Text="{x:Bind EmpFirstName}" 
+                                       FontStyle="Normal"
+                                       FontWeight="Normal"
+                                       Foreground="Black" 
+                                       Margin="0,0,0,05"    
+                                />
+                                <TextBlock Text="{x:Bind EmpId}" 
                                        FontStyle="Normal"
                                        FontWeight="Bold"
                                        Foreground="Black" 
+                                       Margin="0,0,0,05"    
                                 />
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="180,0,0,0" RelativePanel.AlignRightWithPanel="True" >
+                            <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                                <TextBlock Name="OidTextbox"
+                                       Text="{x:Bind _id.Oid}" 
+                                       FontStyle="Normal"
+                                       FontWeight="Normal"
+                                       MaxWidth="5"
+                                       Foreground="Transparent"  
+                                           
+                                />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="180,10,0,0" RelativePanel.AlignRightWithPanel="True" >
                                 <Border Margin="5" 
                                             Padding="5"
                                             BorderThickness="1"
@@ -44,10 +62,11 @@
                                             CornerRadius="15">
 
                                     <TextBlock Text="{x:Bind LeavePeriod}"
-                                                   FontSize="12"
+                                                   FontSize="14"
                                                    Foreground="White"
-                                                   FontWeight="Bold"
-                                                   Margin="5,3,-12,-10" />
+                                                   FontWeight="Thin"
+
+                                                   Margin="3,03,-4,-7" />
                                 </Border>
                                 <TextBlock Text="Days" Margin="0,10,5,0" />
                             </StackPanel>
@@ -67,19 +86,19 @@
                                     </Ellipse>
 
                                     <StackPanel Margin="20,2,0,0">
-                                        <TextBlock Text="{x:Bind DepartureDate}" TextAlignment="Center" Foreground="Black" Margin="05,0,0,0" />
-                                        <TextBlock Text="30-03-2017" />
-                                        <TextBlock Text="10:30"  FontWeight="Light" HorizontalAlignment="Center" />
+                                        <TextBlock Text="Departure" TextAlignment="Center" Foreground="Black" FontWeight="Bold" Margin="05,0,0,0" />
+                                        <TextBlock Text="{x:Bind DepartureDate}" />
+                                        <TextBlock Text="{x:Bind DepartureTime}"  FontWeight="Light" HorizontalAlignment="Center" />
                                     </StackPanel>
 
-                                    <StackPanel Margin="20,15,0,0">
+                                    <StackPanel Margin="20,20,0,0">
                                         <Image Source="Assets\Icons\Sync.jpg" Width="20" Height="20" />
                                     </StackPanel>
 
                                     <StackPanel Margin="20,2,0,0">
-                                        <TextBlock Text="{x:Bind ArrivalDate}" TextAlignment="Center"  Foreground="Black"  Margin="05,0,0,0" />
-                                        <TextBlock Text="30-03-2017"  />
-                                        <TextBlock Text="06:30"  FontWeight="Light" HorizontalAlignment="Center" />
+                                        <TextBlock Text="Arrival" TextAlignment="Center"  Foreground="Black"  FontWeight="Bold"  Margin="05,0,0,0" />
+                                        <TextBlock Text="{x:Bind ArrivalDate}"  />
+                                        <TextBlock Text="{x:Bind ArrivalTime}"  FontWeight="Light" HorizontalAlignment="Center" />
                                     </StackPanel>
 
                                 </StackPanel>
@@ -90,7 +109,6 @@
                         <RelativePanel >
                             <Button Name="ButtonAccept" Content="Accept" Background="SpringGreen" RelativePanel.AlignLeftWithPanel="True" Margin="10,10,0,05" />
                             <Button Name="ButtonReject" Content="Reject" Background="Red" RelativePanel.AlignRightWithPanel="True" Margin="0,10,10,05" />
-
                         </RelativePanel>
                         <StackPanel>
                             <controls:Expander x:Name="Expander2" VerticalAlignment="Center" Margin="0" IsRightTapEnabled="False"
