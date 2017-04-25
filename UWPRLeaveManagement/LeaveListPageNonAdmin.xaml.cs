@@ -34,7 +34,7 @@ namespace UWPRLeaveManagement
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "201112005");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "201112005","4");
         }
     }
 }

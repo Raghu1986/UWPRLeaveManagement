@@ -11,10 +11,10 @@ namespace UWPRLeaveManagement.Models
 {
     public class LeaveTransactionGetPostPut
     {
-        private async static Task<string> CallLeaveTransactionsAsync(string EmpId)
+        private async static Task<string> CallLeaveTransactionsAsync(string EmpId, string LeaveStatus)
         {
             string LeaveTransactionSortName = "{EmpFirstName:1}";
-            string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, "4");
+            string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, LeaveStatus);
             var http = new HttpClient();
             string url;
             if (EmpId == "All")
@@ -30,10 +30,10 @@ namespace UWPRLeaveManagement.Models
 
         }
 
-        public async static Task GetLeaveTransactionAsnc(ObservableCollection<Leavetransaction> Leavetransactions, string EmpId)
+        public async static Task GetLeaveTransactionAsnc(ObservableCollection<Leavetransaction> Leavetransactions, string EmpId,string LeaveStatus)
         {
 
-            var jsonString = await CallLeaveTransactionsAsync(EmpId);
+            var jsonString = await CallLeaveTransactionsAsync(EmpId, LeaveStatus);
             var allLeavetransactions = JsonConvert.DeserializeObject<List<Leavetransaction>>(jsonString);
             Leavetransactions.Clear();
             //allLeavetransactions.ForEach(p => Leavetransactions.Add(p));

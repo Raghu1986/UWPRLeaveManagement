@@ -50,7 +50,7 @@ namespace UWPRLeaveManagement.Models
             else if (firstValue > 1 && secondValue == 5 && secondValue == 05)
 
             {
-                result = firstValue + " " + " ½";
+                result = firstValue + " " + "½";
             }
             else
             {
