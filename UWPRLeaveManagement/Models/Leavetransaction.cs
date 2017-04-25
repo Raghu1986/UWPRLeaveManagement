@@ -39,6 +39,9 @@ namespace UWPRLeaveManagement.Models
         public string EmpReportingTo { get; set; }
 
         [DataMember]
+        public string EmpPath { get; set; }
+
+        [DataMember]
         public string EmpTeam { get; set; }
 
         [DataMember]

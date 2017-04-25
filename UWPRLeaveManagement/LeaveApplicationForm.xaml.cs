@@ -534,6 +534,7 @@ namespace UWPRLeaveManagement
             string ApprovedTime = "";
             string LeaveStatus = "";
             string TransPkey = "";
+            string EmpPath = "";
 
 
                 EmpFirstName = EmployeeCharacters[0].EmpFirstName;
@@ -541,10 +542,11 @@ namespace UWPRLeaveManagement
                 EmpDesignation = EmployeeCharacters[0].EmpDesignation;
                 EmpReportingTo = EmployeeCharacters[0].EmpReportingTo;
                 EmpTeam = EmployeeCharacters[0].EmpTeam;
+                EmpPath = EmployeeCharacters[0].EmpPath;
 
 
 
-                intitDeparturedate = DateTimeToDateIndian.GetDateFromDateTime(DepartureDateCalendar.Date.Value.ToString("G"));
+            intitDeparturedate = DateTimeToDateIndian.GetDateFromDateTime(DepartureDateCalendar.Date.Value.ToString("G"));
                 intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
                 intitArrivaldate = DateTimeToDateIndian.GetDateFromDateTime(ArrivalDateCalendar.Date.Value.ToString("G"));
                 intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();
@@ -565,13 +567,14 @@ namespace UWPRLeaveManagement
                 TransPkey, Empid,
                 EmpFirstName, EmpLastName,
                 EmpDesignation, EmpReportingTo,
-                EmpTeam, intitDeparturedate,
-                intitDepartureHour, intitArrivaldate,
-                intitArrivalHour, AppliedDate,
-                AppliedTime, LeavePeriodF,
-                LeaveType, Description,
-                ApprovedBy, ApprovedDate,
-                ApprovedTime, LeaveStatus
+                EmpTeam, EmpPath,
+                intitDeparturedate,intitDepartureHour,
+                intitArrivaldate,intitArrivalHour,
+                AppliedDate,AppliedTime,
+                LeavePeriodF,LeaveType,
+                Description,ApprovedBy,
+                ApprovedDate,ApprovedTime,
+                LeaveStatus
                 );
 
 

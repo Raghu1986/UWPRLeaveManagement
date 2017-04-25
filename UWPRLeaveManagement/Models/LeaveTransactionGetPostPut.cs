@@ -36,7 +36,28 @@ namespace UWPRLeaveManagement.Models
             var jsonString = await CallLeaveTransactionsAsync(EmpId);
             var allLeavetransactions = JsonConvert.DeserializeObject<List<Leavetransaction>>(jsonString);
             Leavetransactions.Clear();
-            allLeavetransactions.ForEach(p => Leavetransactions.Add(p));
+            //allLeavetransactions.ForEach(p => Leavetransactions.Add(p));
+
+            foreach (var transactions in allLeavetransactions)
+            {
+                // Filter characters that are missing thumbnail images
+
+                if (transactions.EmpPath != null
+                    && transactions.EmpPath != "")
+                //    && character.thumbnail.path != ImageNotAvailablePath)
+                {
+
+                    transactions.EmpPath = String.Format("{0}/{1}.png",
+                        Common.EmpPhotoPath,
+                        transactions.EmpId);
+
+                    transactions.LeavePeriod =Days.GetNumbertoDays(transactions.LeavePeriod);
+
+
+
+                    Leavetransactions.Add(transactions);
+                }
+            }
 
         }
 
@@ -47,13 +68,14 @@ namespace UWPRLeaveManagement.Models
             string TransPkey, string EmpId,
             string EmpFirstName, string EmpLastName,
             string EmpDesignation, string EmpReportingTo,
-            string EmpTeam, string DepartureDate,
-            string DepartureTime, string ArrivalDate,
-            string ArrivalTime, string AppliedDate,
-            string AppliedTime, string LeavePeriod,
-            string LeaveType, string Description,
-            string ApprovedBy, string ApprovedDate,
-            string ApprovedTime, string LeaveStatus
+            string EmpTeam, string EmpPath,
+            string DepartureDate, string DepartureTime, 
+            string ArrivalDate, string ArrivalTime,
+            string AppliedDate,string AppliedTime,
+            string LeavePeriod,string LeaveType,
+            string Description,string ApprovedBy,
+            string ApprovedDate, string ApprovedTime,
+            string LeaveStatus
             )
 
         {
@@ -64,7 +86,26 @@ namespace UWPRLeaveManagement.Models
             var address = new Uri(url);
             Leavetransaction TransactionData = new Leavetransaction();
             TransactionData.TransPkey = TransPkey;
-            TransactionData.EmpId = EmpId;            TransactionData.EmpFirstName = EmpFirstName;            TransactionData.EmpLastName = EmpLastName;            TransactionData.EmpDesignation = EmpDesignation;            TransactionData.EmpReportingTo = EmpReportingTo;            TransactionData.EmpTeam = EmpTeam;            TransactionData.DepartureDate = DepartureDate;            TransactionData.DepartureTime = DepartureTime;            TransactionData.ArrivalDate = ArrivalDate;            TransactionData.ArrivalTime = ArrivalTime;            TransactionData.AppliedDate = AppliedDate;            TransactionData.AppliedTime = AppliedTime;            TransactionData.LeavePeriod = LeavePeriod;            TransactionData.LeaveType = LeaveType;            TransactionData.Description = Description;            TransactionData.ApprovedBy = ApprovedBy;            TransactionData.ApprovedDate = ApprovedDate;            TransactionData.ApprovedTime = ApprovedTime;            TransactionData.LeaveStatus = LeaveStatus;
+            TransactionData.EmpId = EmpId;
+            TransactionData.EmpFirstName = EmpFirstName;
+            TransactionData.EmpLastName = EmpLastName;
+            TransactionData.EmpDesignation = EmpDesignation;
+            TransactionData.EmpReportingTo = EmpReportingTo;
+            TransactionData.EmpTeam = EmpTeam;
+            TransactionData.EmpPath = EmpPath;
+            TransactionData.DepartureDate = DepartureDate;
+            TransactionData.DepartureTime = DepartureTime;
+            TransactionData.ArrivalDate = ArrivalDate;
+            TransactionData.ArrivalTime = ArrivalTime;
+            TransactionData.AppliedDate = AppliedDate;
+            TransactionData.AppliedTime = AppliedTime;
+            TransactionData.LeavePeriod = LeavePeriod;
+            TransactionData.LeaveType = LeaveType;
+            TransactionData.Description = Description;
+            TransactionData.ApprovedBy = ApprovedBy;
+            TransactionData.ApprovedDate = ApprovedDate;
+            TransactionData.ApprovedTime = ApprovedTime;
+            TransactionData.LeaveStatus = LeaveStatus;
             var SerializedData = JsonConvert.SerializeObject(TransactionData);
             http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             var ResponseBody = await http.PostAsync(address, new StringContent(SerializedData, Encoding.UTF8, "application/json"));
