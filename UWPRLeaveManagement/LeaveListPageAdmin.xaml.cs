@@ -51,7 +51,7 @@ namespace UWPRLeaveManagement
         private async void EmployessListview_ItemClick(object sender, ItemClickEventArgs e)
         {
             var SelectedEmployee=(EmployeeMaster)e.ClickedItem;
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, SelectedEmployee.EmpId.ToString(), "4");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, SelectedEmployee.EmpId.ToString(), "1");
             
         }
 
