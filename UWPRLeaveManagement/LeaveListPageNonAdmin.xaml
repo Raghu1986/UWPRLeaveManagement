@@ -24,7 +24,7 @@
                   >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Leavetransaction" >
-                    <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="4" UseLayoutRounding="True">
+                    <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="0" UseLayoutRounding="True"  Margin="05,05,10,05" Height="280">
                         <RelativePanel>
 
                             <StackPanel RelativePanel.AlignLeftWithPanel="True" Margin="20,10,0,0" Orientation="Vertical" >
@@ -110,18 +110,20 @@
                             <Button Name="ButtonAccept" Content="Accept" Background="SpringGreen" RelativePanel.AlignLeftWithPanel="True" Margin="10,10,0,05" />
                             <Button Name="ButtonReject" Content="Reject" Background="Red" RelativePanel.AlignRightWithPanel="True" Margin="0,10,10,05" />
                         </RelativePanel>
-                        <StackPanel Margin="20">
+                        <StackPanel Margin="20"  >
                             <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 
-                                                       Header="{x:Bind LeaveType}"
-                                                       IsExpanded="True">
-                                <Grid Height="150" Background="Transparent">
+                                                       Header="{x:Bind LeaveType}" 
+                                                       IsExpanded="False">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+                                <Grid Height="50" Background="Transparent">
                                     <TextBlock HorizontalAlignment="Center"
-                                                        TextWrapping="Wrap"
-                                                       FontSize="14"
+                                                        TextWrapping="WrapWholeWords"
+                                                        FontSize="20"
                                                         Text="{x:Bind Description}"
-                                                        VerticalAlignment="Center"
-                                                        Style="{StaticResource HeaderTextBlockStyle}" />
+                                                        VerticalAlignment="top"
+                                                         />
                                 </Grid>
+                                </ScrollViewer>
                             </controls:Expander>
                         </StackPanel>
 

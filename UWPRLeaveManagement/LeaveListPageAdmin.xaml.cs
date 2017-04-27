@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -43,6 +44,12 @@ namespace UWPRLeaveManagement
         {
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
             await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "");
+
+            var localObjectStorageHelper = new LocalObjectStorageHelper();
+            // Read and Save with simple objects for login page
+            string keySimpleObject = "47";
+            localObjectStorageHelper.Save(keySimpleObject, "201112005");
+
 
         }
 

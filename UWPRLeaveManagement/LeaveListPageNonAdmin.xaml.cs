@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -34,7 +35,17 @@ namespace UWPRLeaveManagement
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "201112005","1");
+            string empidlogin = "";
+            var localObjectStorageHelper = new LocalObjectStorageHelper();
+            // Read and Save with simple objects
+            string keySimpleObject = "47";
+            if (localObjectStorageHelper.KeyExists(keySimpleObject))
+            {
+                empidlogin = localObjectStorageHelper.Read<string>(keySimpleObject);
+            }
+
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empidlogin, "1");
+
         }
 
       

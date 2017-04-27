@@ -24,9 +24,6 @@ namespace UWPRLeaveManagement.Models
             public Id _id { get; set; }
 
             [DataMember]
-            public string EmpPkey { get; set; }
-
-            [DataMember]
             public string EmpId { get; set; }
 
             [DataMember]
@@ -55,6 +52,12 @@ namespace UWPRLeaveManagement.Models
 
             [DataMember]
             public string EmpPath { get; set; }
+
+            [DataMember]
+            public string Password { get; set; }
+
+            [DataMember]
+            public int EmpGroup { get; set; }
 
 
     }
