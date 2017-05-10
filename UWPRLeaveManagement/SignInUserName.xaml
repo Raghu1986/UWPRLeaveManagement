@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="UWPRLeaveManagement.SignInUserName"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPRLeaveManagement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="LightGray">
+        <RelativePanel Background="White" BorderBrush="Blue" Height="400" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Image Source="Assets\Icons\Rectrix Logo.jpg" Stretch="Uniform" Margin="0,0,0,43"  />
+            <RelativePanel RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="0,30,0,0" >
+                <TextBox Name="EmpIdTextBox" PlaceholderText="Employee Id" Width="281" BorderThickness="1" />
+                <Button Name="EmpIdNextButton" Content="Next"   RelativePanel.AlignRightWith="EmpIdTextBox" RelativePanel.Below="EmpIdTextBox" Background="#FF4285F4" Margin="0,10,0,0"  Foreground="White" Click="EmpIdNextButton_Click" />
+                <TextBlock Name="NotFindErrorTextBlock" Text="Couldn't find your id" FontSize="10" Foreground="Red" RelativePanel.AlignLeftWith="EmpIdTextBox" RelativePanel.Below="EmpIdTextBox" Margin="10,10,0,0" Visibility="Collapsed" />
+            </RelativePanel>
+        </RelativePanel>
+    </Grid>
+</Page>

@@ -118,7 +118,16 @@
     <Compile Include="Models\Leavetransaction.cs" />
     <Compile Include="Models\LeaveTransactionGetPostPut.cs" />
     <Compile Include="Models\RandomNumGen.cs" />
+    <Compile Include="NonAdminPage.xaml.cs">
+      <DependentUpon>NonAdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignInPassword.xaml.cs">
+      <DependentUpon>SignInPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignInUserName.xaml.cs">
+      <DependentUpon>SignInUserName.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -141,6 +150,7 @@
     <Content Include="Assets\EmpPhotos\201617018.png" />
     <Content Include="Assets\EmpPhotos\201617019.png" />
     <Content Include="Assets\EmpPhotos\AllEmpIcons.png" />
+    <Content Include="Assets\Icons\Rectrix Logo.jpg" />
     <Content Include="Assets\Icons\Sync.jpg" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
@@ -211,6 +221,18 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NonAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignInPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignInUserName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup />

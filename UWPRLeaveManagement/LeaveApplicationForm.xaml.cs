@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -504,7 +505,14 @@ namespace UWPRLeaveManagement
 
         private async void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            string Empid = "201112005";
+            string Empid = "";
+            var localObjectStorageHelper = new LocalObjectStorageHelper();
+            // Read and Save with simple objects
+            string keySimpleObject = "47";
+            if (localObjectStorageHelper.KeyExists(keySimpleObject))
+            {
+                Empid = localObjectStorageHelper.Read<string>(keySimpleObject);
+            }
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, Empid);
 
 
@@ -546,7 +554,7 @@ namespace UWPRLeaveManagement
 
 
 
-            intitDeparturedate = DateTimeToDateIndian.GetDateFromDateTime(DepartureDateCalendar.Date.Value.ToString("G"));
+                intitDeparturedate = DateTimeToDateIndian.GetDateFromDateTime(DepartureDateCalendar.Date.Value.ToString("G"));
                 intitDepartureHour = DeparturetimeComboBox.SelectionBoxItem.ToString();
                 intitArrivaldate = DateTimeToDateIndian.GetDateFromDateTime(ArrivalDateCalendar.Date.Value.ToString("G"));
                 intitArrivalHour = ArrivaltimeComboBox.SelectionBoxItem.ToString();

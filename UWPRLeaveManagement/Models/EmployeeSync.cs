@@ -35,6 +35,19 @@ namespace UWPRLeaveManagement.Models
 
         }
 
+        private async static Task<string> CallEmployeeLoginAsync(string EmpId,string EmpPassword)
+        {
+
+            string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"Password\":\"{1}\"}}", EmpId, EmpPassword);
+            var http = new HttpClient();
+            string url;
+            url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.DBName, Common.CollectionName, EmpIdvar, Common.ApiKey);
+            HttpResponseMessage response = await http.GetAsync(new Uri(url));
+            //var jsonString = await response.Content.ReadAsStringAsync();
+            return await response.Content.ReadAsStringAsync();
+
+        }
+
         public async static Task GetAllEmployeesAsnc(ObservableCollection<EmployeeMaster> EmployeeCharacters, string EmpId)
         {
 
@@ -63,7 +76,36 @@ namespace UWPRLeaveManagement.Models
             }
 
         }
-        
+
+        public async static Task GetLoginEmployeesAsnc(ObservableCollection<EmployeeMaster> EmployeeCharacters, string EmpId, string EmpPassword)
+        {
+
+            var jsonString = await CallEmployeeLoginAsync(EmpId,EmpPassword);
+            var allEmployess = JsonConvert.DeserializeObject<List<EmployeeMaster>>(jsonString);
+            EmployeeCharacters.Clear();
+            // allEmployess.ForEach(p => EmployeeCharacters.Add(p));
+
+            foreach (var Employees in allEmployess)
+            {
+                // Filter characters that are missing thumbnail images
+
+                if (Employees.EmpPath != null
+                    && Employees.EmpPath != "")
+                //    && character.thumbnail.path != ImageNotAvailablePath)
+                {
+
+                    Employees.EmpPath = String.Format("{0}/{1}.png",
+                        Common.EmpPhotoPath,
+                        Employees.EmpId);
+
+
+
+                    EmployeeCharacters.Add(Employees);
+                }
+            }
+
+        }
+
 
     }
 }

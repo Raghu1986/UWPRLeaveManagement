@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="UWPRLeaveManagement.NonAdminPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPRLeaveManagement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Name="LeaveBookButton" Content="Book" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold" Margin="10,0,0,0" Click="LeaveBookButton_Click" />
+            <Button Name="LeaveBeforeApprovedButton" Content="Hold" Background="Transparent" BorderThickness="0" FontSize="25"  FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveBeforeApprovedButton_Click" />
+            <Button Name="LeaveApprovedButton" Content="Approved" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveApprovedButton_Click" />
+            <Button Name="LeaveHistoryButton" Content="History" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveHistoryButton_Click" />
+        </StackPanel>
+        <Frame Name="NonAdminFrame" Grid.Row="1" Margin="10,30,0,0" >
+
+        </Frame>
+
+        <StackPanel Grid.Row="2" >
+            <TextBlock Text="Copyrights © reserved Rectrix " HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Page>

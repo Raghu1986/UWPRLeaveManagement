@@ -33,20 +33,23 @@ namespace UWPRLeaveManagement
             LeaveTransactions = new ObservableCollection<Leavetransaction>();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            string empidlogin = "";
+            string LeaveType = (string)e.Parameter;
+
+            string empId = "";
             var localObjectStorageHelper = new LocalObjectStorageHelper();
             // Read and Save with simple objects
             string keySimpleObject = "47";
             if (localObjectStorageHelper.KeyExists(keySimpleObject))
             {
-                empidlogin = localObjectStorageHelper.Read<string>(keySimpleObject);
+                empId = localObjectStorageHelper.Read<string>(keySimpleObject);
             }
-
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empidlogin, "1");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empId, LeaveType);
 
         }
+
+
 
       
     }
