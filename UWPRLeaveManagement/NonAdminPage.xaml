@@ -15,9 +15,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Name="LeaveBookButton" Content="Book" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold" Margin="10,0,0,0" Click="LeaveBookButton_Click" />
-            <Button Name="LeaveBeforeApprovedButton" Content="Hold" Background="Transparent" BorderThickness="0" FontSize="25"  FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveBeforeApprovedButton_Click" />
+            <Button Name="LeaveHoldButton" Content="Hold" Background="Transparent" BorderThickness="0" FontSize="25"  FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveHoldButton_Click" />
             <Button Name="LeaveApprovedButton" Content="Approved" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveApprovedButton_Click" />
-            <Button Name="LeaveHistoryButton" Content="History" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveHistoryButton_Click" />
+            <Button Name="LeaveRejectecdButton" Content="Rejected" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveRejectecdButton_Click" />
         </StackPanel>
         <Frame Name="NonAdminFrame" Grid.Row="1" Margin="10,30,0,0" >
 

@@ -22,8 +22,17 @@ namespace UWPRLeaveManagement.Models
             }
             else
             {
-                string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, LeaveStatus);
-                url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, EmpIdvar, Common.ApiKey);
+                if(LeaveStatus=="All")
+                {
+                    string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\"}}", EmpId, LeaveStatus);
+                    url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, EmpIdvar, Common.ApiKey);
+                }
+                else
+                {
+                    string EmpIdvar = String.Format("{{\"EmpId\":\"{0}\",\"LeaveStatus\":\"{1}\"}}", EmpId, LeaveStatus);
+                    url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, EmpIdvar, Common.ApiKey);
+                }
+
             }
             HttpResponseMessage response = await http.GetAsync(new Uri(url));
             return await response.Content.ReadAsStringAsync();

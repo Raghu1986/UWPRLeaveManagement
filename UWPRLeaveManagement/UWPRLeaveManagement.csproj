@@ -102,8 +102,8 @@
     <Compile Include="LeaveListPageAdmin.xaml.cs">
       <DependentUpon>LeaveListPageAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LeaveListPageNonAdmin.xaml.cs">
-      <DependentUpon>LeaveListPageNonAdmin.xaml</DependentUpon>
+    <Compile Include="LeaveListPageNonAdminHold.xaml.cs">
+      <DependentUpon>LeaveListPageNonAdminHold.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -214,7 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LeaveListPageNonAdmin.xaml">
+    <Page Include="LeaveListPageNonAdminHold.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

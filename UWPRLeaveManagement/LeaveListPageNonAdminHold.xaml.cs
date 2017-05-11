@@ -23,11 +23,13 @@ namespace UWPRLeaveManagement
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LeaveListPageNonAdmin : Page
+    public sealed partial class LeaveListPageNonAdminHold : Page
     {
         public ObservableCollection<Leavetransaction> LeaveTransactions { get; set; }
 
-        public LeaveListPageNonAdmin()
+        
+
+        public LeaveListPageNonAdminHold()
         {
             this.InitializeComponent();
             LeaveTransactions = new ObservableCollection<Leavetransaction>();
@@ -45,12 +47,27 @@ namespace UWPRLeaveManagement
             {
                 empId = localObjectStorageHelper.Read<string>(keySimpleObject);
             }
+            
             await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empId, LeaveType);
+
+        }
+
+        private async void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+            var SelectedSender = (FrameworkElement)sender;
+            var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
+            
+            //Update the data working code
+            string condition = SelectedItem._id.Oid.ToString();
+            string empid = SelectedItem.EmpId.ToString();
+            string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "-1");
+            await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
 
         }
 
 
 
-      
     }
 }

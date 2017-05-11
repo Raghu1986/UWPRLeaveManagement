@@ -33,19 +33,21 @@ namespace UWPRLeaveManagement
             NonAdminFrame.Navigate(typeof(LeaveApplicationForm));
         }
 
-        private void LeaveBeforeApprovedButton_Click(object sender, RoutedEventArgs e)
-        {
-            NonAdminFrame.Navigate(typeof(LeaveListPageNonAdmin),"1");
-        }
 
         private void LeaveApprovedButton_Click(object sender, RoutedEventArgs e)
         {
-            NonAdminFrame.Navigate(typeof(LeaveListPageNonAdmin), "2");
+           // NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminApproved), "2");
         }
 
-        private void LeaveHistoryButton_Click(object sender, RoutedEventArgs e)
+
+        private void LeaveRejectecdButton_Click(object sender, RoutedEventArgs e)
         {
-            NonAdminFrame.Navigate(typeof(LeaveListPageNonAdmin), "3");
+           // NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminRejected), "3");
+        }
+
+        private void LeaveHoldButton_Click(object sender, RoutedEventArgs e)
+        {
+            NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminHold), "1");
         }
     }
 }
