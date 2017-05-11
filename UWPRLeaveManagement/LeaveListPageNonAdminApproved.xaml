@@ -1,0 +1,141 @@
+﻿<Page
+    x:Class="UWPRLeaveManagement.LeaveListPageNonAdminApproved"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPRLeaveManagement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:data="using:UWPRLeaveManagement.Models"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
+    
+
+        <GridView Name="LeaveTransactiongridView" 
+                  SelectionMode="Single"
+                  ItemsSource="{x:Bind LeaveTransactions}"
+                  Margin="0,10,0,0"
+                  HorizontalAlignment="Left"
+                  IsItemClickEnabled="False"
+                  
+                  >
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:Leavetransaction" >
+                    <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="0" UseLayoutRounding="True"  Margin="05,05,10,05" Height="280">
+                        <RelativePanel>
+
+                            <StackPanel RelativePanel.AlignLeftWithPanel="True" Margin="20,10,0,0" Orientation="Vertical" >
+                                <TextBlock Text="{x:Bind EmpFirstName}" 
+                                       FontStyle="Normal"
+                                       FontWeight="Normal"
+                                       Foreground="Black" 
+                                       Margin="0,0,0,05"    
+                                />
+                                <TextBlock Text="{x:Bind EmpId}" 
+                                       FontStyle="Normal"
+                                       FontWeight="Bold"
+                                       Foreground="Black" 
+                                       Margin="0,0,0,05"    
+                                />
+                            </StackPanel>
+                            <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                                <TextBlock Name="OidTextbox"
+                                       Text="{x:Bind _id.Oid}" 
+                                       FontStyle="Normal"
+                                       FontWeight="Normal"
+                                       MaxWidth="5"
+                                       Foreground="Transparent"  
+                                           
+                                />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="180,10,0,0" RelativePanel.AlignRightWithPanel="True" >
+                                <Border Margin="5" 
+                                            Padding="5"
+                                            BorderThickness="1"
+                                            BorderBrush="Blue"
+                                            Width="36"
+                                            Height="35"
+                                            Background="Blue"
+                                            CornerRadius="15">
+
+                                    <TextBlock Text="{x:Bind LeavePeriod}"
+                                                   FontSize="14"
+                                                   Foreground="White"
+                                                   FontWeight="Thin"
+
+                                                   Margin="3,03,-4,-7" />
+                                </Border>
+                                <TextBlock Text="Days" Margin="0,10,5,0" />
+                            </StackPanel>
+
+                        </RelativePanel>
+
+
+
+                        <StackPanel Background="White" BorderBrush="#FF1962B9" BorderThickness="1" UseLayoutRounding="True" >
+                            <RelativePanel>
+                                <StackPanel Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True">
+
+                                    <Ellipse Width="40" Height="40"  >
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{x:Bind EmpPath}"  />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+
+                                    <StackPanel Margin="20,2,0,0">
+                                        <TextBlock Text="Departure" TextAlignment="Center" Foreground="Black" FontWeight="Bold" Margin="05,0,0,0" />
+                                        <TextBlock Text="{x:Bind DepartureDate}" />
+                                        <TextBlock Text="{x:Bind DepartureTime}"  FontWeight="Light" HorizontalAlignment="Center" />
+                                    </StackPanel>
+
+                                    <StackPanel Margin="20,20,0,0">
+                                        <Image Source="Assets\Icons\Sync.jpg" Width="20" Height="20" />
+                                    </StackPanel>
+
+                                    <StackPanel Margin="20,2,0,0">
+                                        <TextBlock Text="Arrival" TextAlignment="Center"  Foreground="Black"  FontWeight="Bold"  Margin="05,0,0,0" />
+                                        <TextBlock Text="{x:Bind ArrivalDate}"  />
+                                        <TextBlock Text="{x:Bind ArrivalTime}"  FontWeight="Light" HorizontalAlignment="Center" />
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                            </RelativePanel>
+
+                        </StackPanel>
+                        <StackPanel >
+                            <Button Name="ButtonCancel" Content="Cancel" Background="Red"  Margin="0,10,10,05" Click="ButtonCancel_Click" />
+                        </StackPanel>
+                        <StackPanel Margin="20"  >
+                            <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 
+                                                       Header="{x:Bind LeaveType}" 
+                                                       IsExpanded="False">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+                                    <Grid Height="50" Background="Transparent">
+                                        <TextBlock HorizontalAlignment="Center"
+                                                        TextWrapping="WrapWholeWords"
+                                                        FontSize="20"
+                                                        Text="{x:Bind Description}"
+                                                        VerticalAlignment="top"
+                                                         />
+                                    </Grid>
+                                </ScrollViewer>
+                            </controls:Expander>
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                </DataTemplate>
+                    
+
+            </GridView.ItemTemplate>
+        </GridView>
+
+
+    </Grid>
+</Page>

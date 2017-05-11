@@ -36,13 +36,13 @@ namespace UWPRLeaveManagement
 
         private void LeaveApprovedButton_Click(object sender, RoutedEventArgs e)
         {
-           // NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminApproved), "2");
+            NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminApproved), "2");
         }
 
 
         private void LeaveRejectecdButton_Click(object sender, RoutedEventArgs e)
         {
-           // NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminRejected), "3");
+            NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminRejected), "3");
         }
 
         private void LeaveHoldButton_Click(object sender, RoutedEventArgs e)
