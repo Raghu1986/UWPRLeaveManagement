@@ -66,11 +66,14 @@ namespace UWPRLeaveManagement
             var SelectedSender = (FrameworkElement)sender;
             var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
 
+          
             //Update the data working code
             string condition = SelectedItem._id.Oid.ToString();
+            string empid = SelectedItem.EmpId.ToString();
             string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
             await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+
         }
 
         private async void ButtonReject_Click(object sender, RoutedEventArgs e)
@@ -81,9 +84,11 @@ namespace UWPRLeaveManagement
 
             //Update the data working code
             string condition = SelectedItem._id.Oid.ToString();
+            string empid = SelectedItem.EmpId.ToString();
             string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "3");
             await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+
         }
     }
 }
