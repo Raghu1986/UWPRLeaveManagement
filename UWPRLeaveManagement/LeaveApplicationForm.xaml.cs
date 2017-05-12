@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UWPRLeaveManagement.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -383,6 +384,8 @@ namespace UWPRLeaveManagement
         private async void Page_Loaded(object sender, RoutedEventArgs e)
 
         {
+            ProgressRingFormLoad.IsActive = true;
+            ProgressRingFormLoad.Visibility = Visibility.Visible;
 
             await HolidaySync.GetHolidayListAsnc(HolidayDates);
 
@@ -408,6 +411,8 @@ namespace UWPRLeaveManagement
 
             DepartureDateCalendar.Date = DateTime.Now;
 
+            ProgressRingFormLoad.IsActive = false;
+            ProgressRingFormLoad.Visibility = Visibility.Collapsed;
 
         }
 
@@ -417,6 +422,7 @@ namespace UWPRLeaveManagement
         private void DepartureDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
 
         {
+            
             if (DepartureDateCalendar.Date == null)
             {
                 DepartureDateCalendar.Date = DateTime.Now;
@@ -441,7 +447,7 @@ namespace UWPRLeaveManagement
         private void ArrivalDateCalendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
 
         {
-
+            
             if (ArrivalDateCalendar.Date == null)
             {
                 //DepartureDateCalendar.Date = DateTime.Now;
@@ -460,6 +466,7 @@ namespace UWPRLeaveManagement
 
         private void DeparturetimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             try
             {
                 var SndrSel = (ComboBox)sender;
@@ -482,7 +489,7 @@ namespace UWPRLeaveManagement
 
         private void ArrivaltimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-        
+            
             try
             {
                 
@@ -505,6 +512,12 @@ namespace UWPRLeaveManagement
 
         private async void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
+            
+            ApplyButton.IsEnabled = false;
+            ProgressRingApply.IsActive = true;
+            ProgressRingApply.Visibility = Visibility.Visible;
+                
+
             string Empid = "";
             var localObjectStorageHelper = new LocalObjectStorageHelper();
             // Read and Save with simple objects
@@ -568,9 +581,9 @@ namespace UWPRLeaveManagement
                 TransPkey = RandomNumGen.GenerateRandomNumber().ToString() + Empid;
 
 
-            if (Convert.ToInt32(LeavePeriodF)>0.5)
+            if (Convert.ToDouble(LeavePeriodF)>0.5)
             {
-                Result.Text = await LeaveTransactionGetPostPut.LeaveDataPostAsync
+                if (await LeaveTransactionGetPostPut.LeaveDataPostAsync
                 (
                 TransPkey, Empid,
                 EmpFirstName, EmpLastName,
@@ -583,9 +596,21 @@ namespace UWPRLeaveManagement
                 Description,ApprovedBy,
                 ApprovedDate,ApprovedTime,
                 LeaveStatus
-                );
+                )=="OK")
+                {
+                    var messageDialog = new MessageDialog("Applied sucessfully");
+                    await messageDialog.ShowAsync();
+                    DepartureDateCalendar.Date = DateTime.Now;
+                    ArrivalDateCalendar.Date = DateTime.Now.AddHours(24);
+                    DescriptionTextBox.Text = "";
+                    LeaveTypeComboBox.SelectedIndex = 0;
 
-            
+                }
+                else
+                {
+                    var messageDialog = new MessageDialog("Not applied");
+                    await messageDialog.ShowAsync();
+                }
 
             }
             else
@@ -593,6 +618,9 @@ namespace UWPRLeaveManagement
                 Result.Text = "Your leave period less than half day,Please take oral approve";
             }
 
+            ProgressRingApply.IsActive = false;
+            ProgressRingApply.Visibility = Visibility.Collapsed;
+            ApplyButton.IsEnabled = true;
 
         }
     }

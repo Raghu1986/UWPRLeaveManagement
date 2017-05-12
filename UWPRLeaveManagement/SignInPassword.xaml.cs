@@ -53,6 +53,9 @@ namespace UWPRLeaveManagement
 
         private async void EmpIdNextButton_Click(object sender, RoutedEventArgs e)
         {
+            EmpIdNextButton.IsEnabled = false;
+            ProgressRingPassword.IsActive = true;
+            ProgressRingPassword.Visibility = Visibility.Visible;
 
             await EmployeeSync.GetLoginEmployeesAsnc(EmployeeLoginCharacters, EmployeeCharacters[0].EmpId,EmppasswordBox.Password);
 
@@ -79,8 +82,10 @@ namespace UWPRLeaveManagement
                 NotFindErrorTextBlock.Visibility = Visibility.Visible;
             }
 
+            ProgressRingPassword.IsActive = false;
+            ProgressRingPassword.Visibility = Visibility.Collapsed;
+            EmpIdNextButton.IsEnabled = true;
 
-           
 
         }
     }

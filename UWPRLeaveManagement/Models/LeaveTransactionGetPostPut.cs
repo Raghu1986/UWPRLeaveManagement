@@ -119,14 +119,15 @@ namespace UWPRLeaveManagement.Models
             http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             var ResponseBody = await http.PostAsync(address, new StringContent(SerializedData, Encoding.UTF8, "application/json"));
 
-            if (ResponseBody.StatusCode.ToString() == "OK")
-            {
-                return "Leave Applied";
-            }
-            else
-            {
-                return "Leave not applied";
-            }
+            return ResponseBody.StatusCode.ToString();
+            //if (ResponseBody.StatusCode.ToString() == "OK")
+            //{
+            //    return "Leave Applied";
+            //}
+            //else
+            //{
+            //    return "Leave not applied";
+            //}
 
 
 

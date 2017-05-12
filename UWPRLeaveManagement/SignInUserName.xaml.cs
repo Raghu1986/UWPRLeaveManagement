@@ -34,6 +34,11 @@ namespace UWPRLeaveManagement
 
         private async  void EmpIdNextButton_Click(object sender, RoutedEventArgs e)
         {
+            
+            EmpIdNextButton.IsEnabled = false;
+            ProgressRingUserName.IsActive = true;
+            ProgressRingUserName.Visibility = Visibility.Visible;
+
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, EmpIdTextBox.Text);
 
             if (EmployeeCharacters.Count>0)
@@ -44,6 +49,10 @@ namespace UWPRLeaveManagement
             {
                 NotFindErrorTextBlock.Visibility = Visibility.Visible;
             }
+
+            ProgressRingUserName.IsActive = false;
+            ProgressRingUserName.Visibility = Visibility.Collapsed;
+            EmpIdNextButton.IsEnabled = true;
 
         }
     }
