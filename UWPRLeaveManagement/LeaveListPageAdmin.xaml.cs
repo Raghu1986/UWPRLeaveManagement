@@ -43,7 +43,7 @@ namespace UWPRLeaveManagement
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
             
         }
 
@@ -58,7 +58,7 @@ namespace UWPRLeaveManagement
 
         private async void AllEmployeeListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
         }
 
         private async void ButtonAccept_Click(object sender, RoutedEventArgs e)
@@ -70,7 +70,7 @@ namespace UWPRLeaveManagement
             string condition = SelectedItem._id.Oid.ToString();
             string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
             await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
         }
 
         private async void ButtonReject_Click(object sender, RoutedEventArgs e)
@@ -83,7 +83,7 @@ namespace UWPRLeaveManagement
             string condition = SelectedItem._id.Oid.ToString();
             string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "3");
             await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
         }
     }
 }

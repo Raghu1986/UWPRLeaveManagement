@@ -24,8 +24,9 @@
                   
                   >
             <GridView.ItemTemplate>
+
                 <DataTemplate x:DataType="data:Leavetransaction" >
-                    <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="0" UseLayoutRounding="True"  Margin="05,05,10,05" Height="280">
+                    <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="1" UseLayoutRounding="True"  Margin="05,05,10,05" Height="280">
                         <RelativePanel>
 
                             <StackPanel RelativePanel.AlignLeftWithPanel="True" Margin="20,10,0,0" Orientation="Vertical" >
@@ -107,23 +108,21 @@
                             </RelativePanel>
 
                         </StackPanel>
-                        <StackPanel >
-                            <Button Name="ButtonCancel" Content="Cancel" Background="Red"  Margin="0,10,10,05" Click="ButtonCancel_Click" />
-                        </StackPanel>
-                        <StackPanel Margin="20"  >
+
+                        <StackPanel>
                             <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 
                                                        Header="{x:Bind LeaveType}" 
                                                        IsExpanded="False">
-                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
-                                    <Grid Height="50" Background="Transparent">
-                                        <TextBlock HorizontalAlignment="Center"
-                                                        TextWrapping="WrapWholeWords"
-                                                        FontSize="20"
-                                                        Text="{x:Bind Description}"
-                                                        VerticalAlignment="top"
-                                                         />
-                                    </Grid>
-                                </ScrollViewer>
+
+                                <Grid Height="80" Background="Transparent">
+                                    <TextBox Text="{x:Bind Description}" AcceptsReturn="True" TextWrapping="Wrap"
+                                             MaxHeight="172"
+                                             BorderThickness="0"
+                                             TextAlignment="Left"
+                                             IsReadOnly="True"
+                                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                </Grid>
+
                             </controls:Expander>
                         </StackPanel>
 
@@ -131,9 +130,9 @@
 
 
                 </DataTemplate>
-                    
 
             </GridView.ItemTemplate>
+            
         </GridView>
 
 

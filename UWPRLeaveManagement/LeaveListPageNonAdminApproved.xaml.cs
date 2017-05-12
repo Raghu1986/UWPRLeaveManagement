@@ -52,21 +52,7 @@ namespace UWPRLeaveManagement
 
         }
 
-        private async void ButtonCancel_Click(object sender, RoutedEventArgs e)
-        {
-
-            var SelectedSender = (FrameworkElement)sender;
-            var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
-            
-            //Update the data working code
-            string condition = SelectedItem._id.Oid.ToString();
-            string empid = SelectedItem.EmpId.ToString();
-            string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "-1");
-            await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
-
-        }
-
+      
 
 
     }

@@ -181,6 +181,7 @@
                      FontSize="18"
                      FontStyle="Normal"
                      FontWeight="SemiBold"
+                     MaxLength="150"
                      Width="300"
                      Height="100"
                      Margin="10,20,0,0"
@@ -241,7 +242,7 @@
                     <DataTemplate x:DataType="data:HolidayMaster" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{x:Bind HDate}" />
-                            <TextBlock Text="{x:Bind Description}" TextWrapping="Wrap" Margin="05,0,0,0" />
+                            <TextBlock Text="{x:Bind Description}" TextWrapping="Wrap"  Margin="05,0,0,0" />
                         </StackPanel>
                         
                     </DataTemplate>
