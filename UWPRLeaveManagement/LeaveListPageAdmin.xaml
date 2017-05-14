@@ -18,6 +18,8 @@
 
         </Grid.RowDefinitions>
 
+        <ProgressRing Name="ProgressRingFormLoad"  Visibility="Collapsed" IsActive="False" Foreground="Red" Width="50" Height="50" FontWeight="ExtraBold"  Margin="0,12,0,0" Grid.RowSpan="1"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+        
         <RelativePanel Grid.Row="0">
             <Button Name="ButtonHamburgerMain"  FontFamily="Segoe MDL2 Assets" Width="50" Content="&#xE700;" FontSize="26" Click="ButtonHamburgerMain_Click" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" />
             <AutoSuggestBox Name="AutoSugBoxEmps" PlaceholderText="Find a employee" QueryIcon="Find"   HorizontalAlignment="Left" Width="150" RelativePanel.AlignRightWith="ButtonHamburgerMain" RelativePanel.AlignRightWithPanel="True"  />
@@ -62,17 +64,16 @@
             </SplitView.Pane>
             <SplitView.Content>
                 <GridView Name="LeaveTransactiongridView" 
-                  SelectionMode="None"
+                  SelectionMode="Single"
                   ItemsSource="{x:Bind LeaveTransactions}"
                   Margin="0,10,0,0"
                   HorizontalAlignment="Left"
+                  IsItemClickEnabled="False"
                   
                   >
-                    
                     <GridView.ItemTemplate>
-                        
                         <DataTemplate x:DataType="data:Leavetransaction" >
-                            <StackPanel Background="White" BorderBrush="LightGray" BorderThickness="0" UseLayoutRounding="True" Margin="05,05,10,05" Height="260"  >
+                            <StackPanel Background="White" BorderBrush="#FF1962B9"   BorderThickness="0" UseLayoutRounding="True"  Margin="05,05,10,05" Height="280">
                                 <RelativePanel>
 
                                     <StackPanel RelativePanel.AlignLeftWithPanel="True" Margin="20,10,0,0" Orientation="Vertical" >
@@ -89,7 +90,16 @@
                                        Margin="0,0,0,05"    
                                 />
                                     </StackPanel>
-                                    
+                                    <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                                        <TextBlock Name="OidTextbox"
+                                       Text="{x:Bind _id.Oid}" 
+                                       FontStyle="Normal"
+                                       FontWeight="Normal"
+                                       MaxWidth="5"
+                                       Foreground="Transparent"  
+                                           
+                                />
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="180,10,0,0" RelativePanel.AlignRightWithPanel="True" >
                                         <Border Margin="5" 
                                             Padding="5"
@@ -145,12 +155,11 @@
                                     </RelativePanel>
 
                                 </StackPanel>
-                                <RelativePanel >
-                                    <Button Name="ButtonAccept" Content="Accept" Background="SpringGreen" RelativePanel.AlignLeftWithPanel="True" Margin="10,10,0,05" Click="ButtonAccept_Click" />
-                                    <Button Name="ButtonReject" Content="Reject" Background="Red" RelativePanel.AlignRightWithPanel="True" Margin="0,10,10,05" Click="ButtonReject_Click" />
-                                </RelativePanel>
-
-                                <StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                    <Button Name="ButtonAccept" Content="Accept" Background="#FF2D3B55" Foreground="White" RelativePanel.AlignLeftWithPanel="True" Width="130" Margin="10,10,0,05" Click="ButtonAccept_Click" />
+                                    <Button Name="ButtonReject" Content="Reject" Background="#FFE01342" Foreground="White" RelativePanel.AlignRightWithPanel="True" Width="130" Margin="0,10,10,05" Click="ButtonReject_Click" />
+                                </StackPanel>
+                                <StackPanel   >
                                     <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 
                                                        Header="{x:Bind LeaveType}" 
                                                        IsExpanded="False">
@@ -178,7 +187,10 @@
 
                     </GridView.ItemTemplate>
                 </GridView>
-            </SplitView.Content>
+
+
+    
+    </SplitView.Content>
         </SplitView>
     </Grid>
 </Page>

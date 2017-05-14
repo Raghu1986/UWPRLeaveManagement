@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UWPRLeaveManagement.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -42,9 +43,15 @@ namespace UWPRLeaveManagement
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            ProgressRingFormLoad.IsActive = true;
+            ProgressRingFormLoad.Visibility = Visibility.Visible;
+
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
             await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
-            
+
+            ProgressRingFormLoad.IsActive = false;
+            ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+
         }
 
         
@@ -63,31 +70,71 @@ namespace UWPRLeaveManagement
 
         private async void ButtonAccept_Click(object sender, RoutedEventArgs e)
         {
-            var SelectedSender = (FrameworkElement)sender;
-            var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
+            ProgressRingFormLoad.IsActive = true;
+            ProgressRingFormLoad.Visibility = Visibility.Visible;
+            try
+            {
+                var SelectedSender = (FrameworkElement)sender;
+                var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
 
-          
-            //Update the data working code
-            string condition = SelectedItem._id.Oid.ToString();
-            string empid = SelectedItem.EmpId.ToString();
-            string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
-            await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+
+                //Update the data working code
+                string condition = SelectedItem._id.Oid.ToString();
+                string empid = SelectedItem.EmpId.ToString();
+                string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
+                await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+
+                var messageDialog = new MessageDialog("Accepted");
+                await messageDialog.ShowAsync();
+
+                ProgressRingFormLoad.IsActive = false;
+                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("not accepted !Error ");
+                await messageDialog.ShowAsync();
+
+                ProgressRingFormLoad.IsActive = false;
+                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+            }
+            
 
         }
 
         private async void ButtonReject_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                ProgressRingFormLoad.IsActive = true;
+                ProgressRingFormLoad.Visibility = Visibility.Visible;
 
-            var SelectedSender = (FrameworkElement)sender;
-            var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
+                var SelectedSender = (FrameworkElement)sender;
+                var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
 
-            //Update the data working code
-            string condition = SelectedItem._id.Oid.ToString();
-            string empid = SelectedItem.EmpId.ToString();
-            string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "3");
-            await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+                //Update the data working code
+                string condition = SelectedItem._id.Oid.ToString();
+                string empid = SelectedItem.EmpId.ToString();
+                string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "3");
+                await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+
+                var messageDialog = new MessageDialog("Rejected");
+                await messageDialog.ShowAsync();
+
+                ProgressRingFormLoad.IsActive = false;
+                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("not rejected !Error ");
+                await messageDialog.ShowAsync();
+
+                ProgressRingFormLoad.IsActive = false;
+                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+            }
+            
 
         }
     }
