@@ -107,7 +107,7 @@
                                             BorderBrush="Blue"
                                             Width="36"
                                             Height="35"
-                                            Background="Blue"
+                                            Background="#FF413E61"
                                             CornerRadius="15">
 
                                             <TextBlock Text="{x:Bind LeavePeriod}"
