@@ -88,5 +88,45 @@ namespace UWPRLeaveManagement
 
 
         }
+
+        private async void EmppasswordBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter || e.Key == Windows.System.VirtualKey.Tab)
+            {
+                EmpIdNextButton.IsEnabled = false;
+                ProgressRingPassword.IsActive = true;
+                ProgressRingPassword.Visibility = Visibility.Visible;
+
+                await EmployeeSync.GetLoginEmployeesAsnc(EmployeeLoginCharacters, EmployeeCharacters[0].EmpId, EmppasswordBox.Password);
+
+                if (EmployeeLoginCharacters.Count > 0)
+                {
+                    var localObjectStorageHelper = new LocalObjectStorageHelper();
+                    // Read and Save with simple objects for login page
+                    string keySimpleObject = "47";
+                    localObjectStorageHelper.Save(keySimpleObject, EmployeeCharacters[0].EmpId);
+
+                    if (EmployeeLoginCharacters[0].EmpGroup == 1)
+                    {
+                        Frame.Navigate(typeof(NonAdminPage));
+                    }
+                    else if (EmployeeLoginCharacters[0].EmpGroup == 2)
+                    {
+                        Frame.Navigate(typeof(LeaveListPageAdmin));
+                    }
+
+                    //
+                }
+                else if (EmployeeLoginCharacters.Count == 0)
+                {
+                    NotFindErrorTextBlock.Visibility = Visibility.Visible;
+                }
+
+                ProgressRingPassword.IsActive = false;
+                ProgressRingPassword.Visibility = Visibility.Collapsed;
+                EmpIdNextButton.IsEnabled = true;
+
+            }
+        }
     }
 }

@@ -55,5 +55,33 @@ namespace UWPRLeaveManagement
             EmpIdNextButton.IsEnabled = true;
 
         }
+
+  
+
+        private async void EmpIdTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if(e.Key == Windows.System.VirtualKey.Enter || e.Key == Windows.System.VirtualKey.Tab)
+            {
+                EmpIdNextButton.IsEnabled = false;
+                ProgressRingUserName.IsActive = true;
+                ProgressRingUserName.Visibility = Visibility.Visible;
+
+                await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, EmpIdTextBox.Text);
+
+                if (EmployeeCharacters.Count > 0)
+                {
+                    Frame.Navigate(typeof(SignInPassword), EmpIdTextBox.Text);
+                }
+                else if (EmployeeCharacters.Count == 0)
+                {
+                    NotFindErrorTextBlock.Visibility = Visibility.Visible;
+                }
+
+                ProgressRingUserName.IsActive = false;
+                ProgressRingUserName.Visibility = Visibility.Collapsed;
+                EmpIdNextButton.IsEnabled = true;
+            }
+
+        }
     }
 }
