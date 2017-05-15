@@ -137,5 +137,10 @@ namespace UWPRLeaveManagement
             
 
         }
+
+        private void LogoffButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

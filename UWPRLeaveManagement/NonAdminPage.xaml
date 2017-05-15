@@ -18,6 +18,8 @@
             <Button Name="LeaveHoldButton" Content="Hold" Background="Transparent" BorderThickness="0" FontSize="25"  FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveHoldButton_Click" />
             <Button Name="LeaveApprovedButton" Content="Approved" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveApprovedButton_Click" />
             <Button Name="LeaveRejectecdButton" Content="Rejected" Background="Transparent" BorderThickness="0" FontSize="25" FontWeight="Bold"  Margin="10,0,0,0" Click="LeaveRejectecdButton_Click" />
+            <Button Name="LogoffButton" Content="&#xE192;" FontSize="14" Foreground="White"  FontFamily="Segoe MDL2 Assets" Width="80" Background="#FFB91414" HorizontalAlignment="Right" Margin="650,0,0,0" Click="LogoffButton_Click" />
+
         </StackPanel>
         <Frame Name="NonAdminFrame" Grid.Row="1" Margin="10,30,0,0" >
 

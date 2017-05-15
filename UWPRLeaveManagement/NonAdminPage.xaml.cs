@@ -49,5 +49,10 @@ namespace UWPRLeaveManagement
         {
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminHold), "1");
         }
+
+        private void LogoffButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

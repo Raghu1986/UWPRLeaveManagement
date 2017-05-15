@@ -94,17 +94,17 @@
 
                         </StackPanel>
 
-                        <StackPanel>
+                        <StackPanel Height="100" MaxWidth="280">
                             <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 
                                                        Header="{x:Bind LeaveType}" 
                                                        IsExpanded="False">
 
                                 <Grid Height="80" Background="Transparent">
                                     <TextBox Text="{x:Bind Description}" AcceptsReturn="True" TextWrapping="Wrap"
-                                             MaxHeight="172"
+                                             MaxHeight="100"
                                              BorderThickness="0"
                                              TextAlignment="Left"
-                                             IsReadOnly="True"
+                                             IsReadOnly="False"
                                              ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                                 </Grid>
 
