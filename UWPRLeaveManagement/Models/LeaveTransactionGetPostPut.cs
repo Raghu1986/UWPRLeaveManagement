@@ -18,7 +18,15 @@ namespace UWPRLeaveManagement.Models
             string url;
             if (EmpId == "All")
             {
-                url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?s={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, LeaveTransactionSortName, Common.ApiKey);
+                if (LeaveStatus == "All")
+                {
+                    url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?s={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, LeaveTransactionSortName, Common.ApiKey);
+                }
+                else
+                {
+                    string EmpIdvar = String.Format("{{\"LeaveStatus\":\"{0}\"}}", LeaveStatus);
+                    url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}?q={2}&apiKey={3}", Common.LeaveTransactionDBName, Common.LeaveTransactionCollectionName, EmpIdvar, Common.ApiKey);
+                }
             }
             else
             {
