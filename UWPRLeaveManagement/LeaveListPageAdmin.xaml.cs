@@ -74,7 +74,7 @@ namespace UWPRLeaveManagement
         private async void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
             
-           
+
             try
             {
                 
@@ -91,6 +91,8 @@ namespace UWPRLeaveManagement
                 //Update the data working code
                 string condition = SelectedItem._id.Oid.ToString();
                 string empid = SelectedItem.EmpId.ToString();
+                
+               // string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}},{{\"ApprovedDate\": { \"$date\": \"{1}\"}}}}}", "2", DateTime.Now);
                 string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
                 await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
                 
