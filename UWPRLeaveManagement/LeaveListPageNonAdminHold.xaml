@@ -93,7 +93,11 @@
 
                         </StackPanel>
                         <StackPanel  >
-                            <Button Name="ButtonCancel" Content="Cancel"  Background="#FFE01342"  Margin="0,10,10,05" Click="ButtonCancel_Click" />
+                            <RelativePanel>
+                                <Button Name="ButtonCancel" Content="Cancel"  Background="#FFE01342"  Margin="0,10,10,05" Click="ButtonCancel_Click" />
+                                <ProgressRing Name="CancelProgressRing"  Visibility="Collapsed" IsActive="False" Foreground="white" FontWeight="ExtraBold" RelativePanel.AlignTopWith="ButtonCancel" RelativePanel.AlignVerticalCenterWith="ButtonCancel" RelativePanel.AlignHorizontalCenterWith="ButtonCancel" Margin="0,15,0,0" />
+                            </RelativePanel>
+                            
                         </StackPanel>
                         <StackPanel Height="100" MaxWidth="280">
                             <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 

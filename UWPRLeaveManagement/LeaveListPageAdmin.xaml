@@ -67,7 +67,7 @@
             </SplitView.Pane>
             <SplitView.Content>
                 <GridView Name="LeaveTransactiongridView" 
-                  SelectionMode="Single"
+                  SelectionMode="None"
                   ItemsSource="{x:Bind LeaveTransactions}"
                   Margin="0,10,0,0"
                   HorizontalAlignment="Left"
@@ -141,11 +141,19 @@
                                         </StackPanel>
 
                                     </RelativePanel>
-
+                                    
                                 </StackPanel>
+
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                                    <Button Name="ButtonAccept" Content="Accept" Background="#FF2D3B55" Foreground="White" RelativePanel.AlignLeftWithPanel="True" Width="130" Margin="10,10,0,05" Click="ButtonAccept_Click" />
-                                    <Button Name="ButtonReject" Content="Reject" Background="#FFE01342" Foreground="White" RelativePanel.AlignRightWithPanel="True" Width="130" Margin="0,10,10,05" Click="ButtonReject_Click" />
+                                    <RelativePanel>
+                                        <Button Name="AcceptButton" Content="Accept" Background="#FF2D3B55" Foreground="White"  Width="130" Margin="10,10,0,05" Click="AcceptButton_Click" />
+                                        <ProgressRing Name="AcceptProgressRing"  Visibility="Collapsed" IsActive="False" Foreground="White" FontWeight="ExtraBold" RelativePanel.AlignTopWith="AcceptButton" RelativePanel.AlignVerticalCenterWith="AcceptButton" RelativePanel.AlignHorizontalCenterWith="AcceptButton" Margin="0,15,0,0" />
+                                    </RelativePanel>
+                                    <RelativePanel>
+                                        <Button Name="RejectButton" Content="Reject" Background="#FFE01342" Foreground="White"  Width="130" Margin="0,10,10,05" Click="RejectButton_Click" />
+                                        <ProgressRing Name="RejectProgressRing"  Visibility="Collapsed" IsActive="False" Foreground="white" FontWeight="ExtraBold" RelativePanel.AlignTopWith="RejectButton" RelativePanel.AlignVerticalCenterWith="RejectButton" RelativePanel.AlignHorizontalCenterWith="RejectButton" Margin="0,15,0,0" />
+                                    </RelativePanel>
+
                                 </StackPanel>
                                 <StackPanel Height="100" MaxWidth="280">
                                     <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10" 

@@ -24,6 +24,7 @@ namespace UWPRLeaveManagement
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+
     public sealed partial class LeaveListPageAdmin : Page
     {
         public ObservableCollection<EmployeeMaster> EmployeeCharacters { get; set; }
@@ -66,49 +67,72 @@ namespace UWPRLeaveManagement
         private async void AllEmployeeListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            
         }
+        
 
-        private async void ButtonAccept_Click(object sender, RoutedEventArgs e)
+        private async void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            ProgressRingFormLoad.IsActive = true;
-            ProgressRingFormLoad.Visibility = Visibility.Visible;
+            
+           
             try
             {
+                
+                var parent = (sender as Button).Parent;
+                ProgressRing AcceptProgressRing = parent.GetChildrenOfType<ProgressRing>().First(x => x.Name == "AcceptProgressRing");
+                AcceptProgressRing.IsActive = true;
+                AcceptProgressRing.Visibility = Visibility.Visible;
+                (sender as Button).IsEnabled = false;
+
                 var SelectedSender = (FrameworkElement)sender;
                 var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
-
+                
 
                 //Update the data working code
                 string condition = SelectedItem._id.Oid.ToString();
                 string empid = SelectedItem.EmpId.ToString();
                 string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
                 await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+                
 
                 var messageDialog = new MessageDialog("Accepted");
                 await messageDialog.ShowAsync();
 
-                ProgressRingFormLoad.IsActive = false;
-                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+                AcceptProgressRing.IsActive = false;
+                AcceptProgressRing.Visibility = Visibility.Collapsed;
+                (sender as Button).IsEnabled = true;
+
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
             }
             catch
             {
                 var messageDialog = new MessageDialog("not accepted !Error ");
                 await messageDialog.ShowAsync();
+                
 
-                ProgressRingFormLoad.IsActive = false;
-                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+                var parent = (sender as Button).Parent;
+                ProgressRing AcceptProgressRing = parent.GetChildrenOfType<ProgressRing>().First(x => x.Name == "AcceptProgressRing");
+                AcceptProgressRing.IsActive = false;
+                AcceptProgressRing.Visibility = Visibility.Collapsed;
+                (sender as Button).IsEnabled = true;
+
+              
+
             }
             
 
         }
 
-        private async void ButtonReject_Click(object sender, RoutedEventArgs e)
+        private async void RejectButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ProgressRingFormLoad.IsActive = true;
-                ProgressRingFormLoad.Visibility = Visibility.Visible;
+
+                var parent = (sender as Button).Parent;
+                ProgressRing AcceptProgressRing = parent.GetChildrenOfType<ProgressRing>().First(x => x.Name == "RejectProgressRing");
+                AcceptProgressRing.IsActive = true;
+                AcceptProgressRing.Visibility = Visibility.Visible;
+                (sender as Button).IsEnabled = false;
 
                 var SelectedSender = (FrameworkElement)sender;
                 var SelectedItem = (Leavetransaction)SelectedSender.DataContext;
@@ -118,21 +142,27 @@ namespace UWPRLeaveManagement
                 string empid = SelectedItem.EmpId.ToString();
                 string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "3");
                 await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
-                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
 
                 var messageDialog = new MessageDialog("Rejected");
                 await messageDialog.ShowAsync();
 
-                ProgressRingFormLoad.IsActive = false;
-                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+                AcceptProgressRing.IsActive = false;
+                AcceptProgressRing.Visibility = Visibility.Collapsed;
+                (sender as Button).IsEnabled = true;
+
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, empid, "1");
+
             }
             catch
             {
                 var messageDialog = new MessageDialog("not rejected !Error ");
                 await messageDialog.ShowAsync();
 
-                ProgressRingFormLoad.IsActive = false;
-                ProgressRingFormLoad.Visibility = Visibility.Collapsed;
+                var parent = (sender as Button).Parent;
+                ProgressRing AcceptProgressRing = parent.GetChildrenOfType<ProgressRing>().First(x => x.Name == "RejectProgressRing");
+                AcceptProgressRing.IsActive = false;
+                AcceptProgressRing.Visibility = Visibility.Collapsed;
+                (sender as Button).IsEnabled = true;
             }
             
 
@@ -142,5 +172,6 @@ namespace UWPRLeaveManagement
         {
             Frame.Navigate(typeof(MainPage));
         }
+        
     }
 }

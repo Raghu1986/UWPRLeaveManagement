@@ -119,6 +119,7 @@
     <Compile Include="Models\Days.cs" />
     <Compile Include="Models\EmployeeMaster.cs" />
     <Compile Include="Models\EmployeeSync.cs" />
+    <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\HolidayMaster.cs" />
     <Compile Include="Models\HolidaySync.cs" />
     <Compile Include="Models\Leavetransaction.cs" />

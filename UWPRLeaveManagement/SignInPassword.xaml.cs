@@ -89,7 +89,7 @@ namespace UWPRLeaveManagement
 
         }
 
-        private async void EmppasswordBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        private async void EmppasswordBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter || e.Key == Windows.System.VirtualKey.Tab)
             {
