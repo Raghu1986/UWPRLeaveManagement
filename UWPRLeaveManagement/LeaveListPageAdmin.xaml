@@ -28,8 +28,12 @@
 
         <SplitView Name="EmpListSplitView" Background="GhostWhite" Grid.Row="1"  DisplayMode="CompactInline" CompactPaneLength="50"  >
             <SplitView.Pane>
-                <StackPanel>
-                    <ListView Name="EmployessListview" ItemsSource="{x:Bind EmployeeCharacters}" Margin="0,10,0,0" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="EmployessListview_ItemClick"  >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <ListView Name="EmployessListview" Grid.Row="0" ItemsSource="{x:Bind EmployeeCharacters}" Margin="0,10,0,0" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="EmployessListview_ItemClick"  >
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:EmployeeMaster">
 
@@ -57,12 +61,12 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackPanel Orientation="Horizontal"  Margin="10,100,0,0" >
+                    <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="10,100,0,0" >
                         <Button Name="LogoffButton" Content="&#xE192;"  FontSize="14" Foreground="White"   FontFamily="Segoe MDL2 Assets" Width="35" Height="35" Background="#FFB91414" HorizontalAlignment="Right" Click="LogoffButton_Click" />
-                        <TextBlock Text="logoff" Margin="15,07,0,0" />
+                        <TextBlock Text="logoff" Height="20" Margin="15,10,0,0" />
                     </StackPanel>
 
-                </StackPanel>
+                </Grid>
 
             </SplitView.Pane>
             <SplitView.Content>

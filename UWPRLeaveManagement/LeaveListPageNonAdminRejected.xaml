@@ -16,7 +16,7 @@
     
 
         <GridView Name="LeaveTransactiongridView" 
-                  SelectionMode="Single"
+                  SelectionMode="None"
                   ItemsSource="{x:Bind LeaveTransactions}"
                   Margin="0,10,0,0"
                   HorizontalAlignment="Left"
@@ -98,14 +98,14 @@
                                                        Header="{x:Bind LeaveType}" 
                                                        IsExpanded="False">
 
-                                <Grid Height="80" Background="Transparent">
+                                <!--<Grid Height="80" Background="Transparent">-->
                                     <TextBox Text="{x:Bind Description}" AcceptsReturn="True" TextWrapping="Wrap"
                                              MaxHeight="100"
                                              BorderThickness="0"
                                              TextAlignment="Left"
                                              IsReadOnly="False"
                                              ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                                </Grid>
+                                <!--</Grid>-->
 
                             </controls:Expander>
                         </StackPanel>
