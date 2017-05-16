@@ -26,48 +26,48 @@ namespace UWPRLeaveManagement
         public NonAdminPage()
         {
             this.InitializeComponent();
-            LeaveBookButton.Foreground = new SolidColorBrush(Colors.DarkGray);
-            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveBookButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveApplicationForm));
         }
 
         private void LeaveBookButton_Click(object sender, RoutedEventArgs e)
         {
-            LeaveBookButton.Foreground = new SolidColorBrush(Colors.DarkGray);
-            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveBookButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveApplicationForm));
         }
 
 
         private void LeaveApprovedButton_Click(object sender, RoutedEventArgs e)
         {
-            LeaveBookButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
-            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveBookButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminApproved), "2");
         }
 
 
         private void LeaveRejectecdButton_Click(object sender, RoutedEventArgs e)
         {
-            LeaveBookButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveBookButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.Black);
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminRejected), "3");
         }
 
         private void LeaveHoldButton_Click(object sender, RoutedEventArgs e)
         {
-            LeaveBookButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
-            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.Black);
-            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveBookButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.Black);
+            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminHold), "1");
         }
 
