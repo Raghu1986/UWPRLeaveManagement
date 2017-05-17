@@ -128,16 +128,6 @@ namespace UWPRLeaveManagement.Models
             var ResponseBody = await http.PostAsync(address, new StringContent(SerializedData, Encoding.UTF8, "application/json"));
 
             return ResponseBody.StatusCode.ToString();
-            //if (ResponseBody.StatusCode.ToString() == "OK")
-            //{
-            //    return "Leave Applied";
-            //}
-            //else
-            //{
-            //    return "Leave not applied";
-            //}
-
-
 
         }
 

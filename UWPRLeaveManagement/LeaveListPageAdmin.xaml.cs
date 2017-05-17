@@ -91,9 +91,9 @@ namespace UWPRLeaveManagement
                 //Update the data working code
                 string condition = SelectedItem._id.Oid.ToString();
                 string empid = SelectedItem.EmpId.ToString();
-                
-               // string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}},{{\"ApprovedDate\": { \"$date\": \"{1}\"}}}}}", "2", DateTime.Now);
-                string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "2");
+                string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\",\"ApprovedBy\":\"{1}\",\"ApprovedDate\":\"{2}\",\"ApprovedTime\":\"{3}\"}}}}", "2", empid, DateTimeToDateIndian.GetDateFromDateTime(DateTime.Now.ToString("G")), DateTime.Now.ToString("hh:mm tt"));
+
+
                 await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
                 
 
