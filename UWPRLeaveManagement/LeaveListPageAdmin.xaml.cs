@@ -195,7 +195,7 @@ namespace UWPRLeaveManagement
             {
                 String after = sender.Text.Substring(0, 1).ToUpper() + sender.Text.Substring(1);
                 var autoSuggestbox = (AutoSuggestBox)sender;
-                var Suggestions = EmployeeCharacters.Where(p => p.EmpFirstName.Contains(after)).Select(p=>p.EmpFirstName).ToList();
+                var Suggestions = EmployeeCharacters.Where(p => p.EmpFirstName.StartsWith(after)).Select(p=>p.EmpFirstName).ToList();
                 autoSuggestbox.ItemsSource = Suggestions;
             }
             
@@ -214,7 +214,7 @@ namespace UWPRLeaveManagement
             else
             { 
                 await EmployeeSync.GetAutosuggestEmployeesAsnc(EmployeeCharacters, ChooseItem);
-                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "10");
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, EmployeeCharacters[0].EmpId, "1");
             }
 
             ProgressRingAutosuggestionLoad.IsActive = false;
@@ -234,7 +234,7 @@ namespace UWPRLeaveManagement
             else
             { 
                 await EmployeeSync.GetAutosuggestEmployeesAsnc(EmployeeCharacters, QueryItem);
-                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "10");
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, EmployeeCharacters[0].EmpId, "1");
             }
             ProgressRingAutosuggestionLoad.IsActive = false;
             ProgressRingAutosuggestionLoad.Visibility = Visibility.Collapsed;
