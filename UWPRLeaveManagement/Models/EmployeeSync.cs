@@ -157,6 +157,19 @@ namespace UWPRLeaveManagement.Models
 
         }
 
+        public static async Task<string> EmpPasswordPutAsync(string condition, string setvalue)
+        {
+            var http = new HttpClient();
+
+
+
+            string url = String.Format("https://api.mlab.com/api/1/databases/{0}/collections/{1}/{2}?apiKey={3}",  Common.DBName, Common.CollectionName, condition, Common.ApiKey);
+
+            http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var ResponseBody = await http.PutAsync(url.ToString(), new StringContent(setvalue.ToString(), Encoding.UTF8, "application/json"));
+            return ResponseBody.StatusCode.ToString();
+        }
+
 
     }
 }

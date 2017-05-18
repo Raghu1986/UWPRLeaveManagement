@@ -151,7 +151,7 @@ namespace UWPRLeaveManagement
                 //Update the data working code
                 string condition = SelectedItem._id.Oid.ToString();
                 string empid = SelectedItem.EmpId.ToString();
-                string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\"}}}}", "3");
+                string setValue = String.Format("{{\"$set\":{{\"LeaveStatus\":\"{0}\",\"ApprovedBy\":\"{1}\",\"ApprovedDate\":\"{2}\",\"ApprovedTime\":\"{3}\"}}}}", "3", empid, DateTimeToDateIndian.GetDateFromDateTime(DateTime.Now.ToString("G")), DateTime.Now.ToString("hh:mm tt"));
                 await LeaveTransactionGetPostPut.LeaveTransactionPutAsync(condition, setValue);
 
                 var messageDialog = new MessageDialog("Rejected");

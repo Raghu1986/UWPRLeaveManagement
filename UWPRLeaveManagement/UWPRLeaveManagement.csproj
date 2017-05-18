@@ -128,6 +128,9 @@
     <Compile Include="NonAdminPage.xaml.cs">
       <DependentUpon>NonAdminPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PasswordResetNonAdmin.xaml.cs">
+      <DependentUpon>PasswordResetNonAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignInPassword.xaml.cs">
       <DependentUpon>SignInPassword.xaml</DependentUpon>
@@ -240,6 +243,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NonAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordResetNonAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
