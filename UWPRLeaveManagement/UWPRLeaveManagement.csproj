@@ -148,6 +148,8 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\EmpPhotos\201011001.png" />
+    <Content Include="Assets\EmpPhotos\201011002.png" />
     <Content Include="Assets\EmpPhotos\201112005.png" />
     <Content Include="Assets\EmpPhotos\201213007.png" />
     <Content Include="Assets\EmpPhotos\201314008.png" />
