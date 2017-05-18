@@ -22,7 +22,6 @@
         
         <RelativePanel Grid.Row="0">
             <Button Name="ButtonHamburgerMain"  FontFamily="Segoe MDL2 Assets" Width="50" Content="&#xE700;" FontSize="26" Click="ButtonHamburgerMain_Click" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" />
-            <AutoSuggestBox Name="AutoSugBoxEmps" PlaceholderText="Find a employee" QueryIcon="Find"   HorizontalAlignment="Left" Width="150" RelativePanel.AlignRightWith="ButtonHamburgerMain" RelativePanel.AlignRightWithPanel="True"  />
         </RelativePanel>
 
 
@@ -30,10 +29,15 @@
             <SplitView.Pane>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <ListView Name="EmployessListview" Grid.Row="0" ItemsSource="{x:Bind EmployeeCharacters}" Margin="0,10,0,0" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="EmployessListview_ItemClick"  >
+                    <StackPanel Orientation="Horizontal"  Grid.Row="0"  >
+                        <AutoSuggestBox Name="AutoSugBoxEmps" PlaceholderText="Find employee" QueryIcon="Find" Visibility="Collapsed" Width="160" Margin="45,0,05,0" TextChanged="AutoSugBoxEmps_TextChanged" SuggestionChosen="AutoSugBoxEmps_SuggestionChosen" QuerySubmitted="AutoSugBoxEmps_QuerySubmitted" Unloaded="AutoSugBoxEmps_Unloaded"   />
+                        <ProgressRing Name="ProgressRingAutosuggestionLoad"  Visibility="Collapsed" IsActive="False" Foreground="DarkSlateGray" Width="10" Height="10" FontWeight="ExtraBold" Margin="05,0,05,0"   />
+                    </StackPanel>
+                    <ListView Name="EmployessListview" Grid.Row="1" ItemsSource="{x:Bind EmployeeCharacters}" Margin="0,10,0,0" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="EmployessListview_ItemClick"  >
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:EmployeeMaster">
 
@@ -61,7 +65,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="10,100,0,0" >
+                    <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="10,100,0,0" >
                         <Button Name="LogoffButton" Content="&#xE192;"  FontSize="14" Foreground="White"   FontFamily="Segoe MDL2 Assets" Width="35" Height="35" Background="#FFB91414" HorizontalAlignment="Right" Click="LogoffButton_Click" />
                         <TextBlock Text="logoff" Height="20" Margin="15,10,0,0" />
                     </StackPanel>

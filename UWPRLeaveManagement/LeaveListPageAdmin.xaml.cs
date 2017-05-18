@@ -40,6 +40,15 @@ namespace UWPRLeaveManagement
         private void ButtonHamburgerMain_Click(object sender, RoutedEventArgs e)
         {
             EmpListSplitView.IsPaneOpen = !EmpListSplitView.IsPaneOpen;
+            if(EmpListSplitView.IsPaneOpen)
+            {
+                AutoSugBoxEmps.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AutoSugBoxEmps.Visibility = Visibility.Collapsed;
+            }
+            
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -174,6 +183,73 @@ namespace UWPRLeaveManagement
         {
             Frame.Navigate(typeof(MainPage));
         }
-        
+
+        private async void AutoSugBoxEmps_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (String.IsNullOrEmpty(sender.Text))
+            {
+                await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            }
+            else
+            {
+                String after = sender.Text.Substring(0, 1).ToUpper() + sender.Text.Substring(1);
+                var autoSuggestbox = (AutoSuggestBox)sender;
+                var Suggestions = EmployeeCharacters.Where(p => p.EmpFirstName.Contains(after)).Select(p=>p.EmpFirstName).ToList();
+                autoSuggestbox.ItemsSource = Suggestions;
+            }
+            
+        }
+
+        private async void AutoSugBoxEmps_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            ProgressRingAutosuggestionLoad.IsActive = true;
+            ProgressRingAutosuggestionLoad.Visibility = Visibility.Visible;
+            string ChooseItem=args.SelectedItem.ToString();
+            if (String.IsNullOrEmpty(ChooseItem))
+            {
+                await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            }
+            else
+            { 
+                await EmployeeSync.GetAutosuggestEmployeesAsnc(EmployeeCharacters, ChooseItem);
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "10");
+            }
+
+            ProgressRingAutosuggestionLoad.IsActive = false;
+            ProgressRingAutosuggestionLoad.Visibility = Visibility.Collapsed;
+        }
+
+        private async void AutoSugBoxEmps_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            ProgressRingAutosuggestionLoad.IsActive = true;
+            ProgressRingAutosuggestionLoad.Visibility = Visibility.Visible;
+            string QueryItem = args.QueryText.ToString();
+            if (String.IsNullOrEmpty(QueryItem))
+            {
+                await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            }
+            else
+            { 
+                await EmployeeSync.GetAutosuggestEmployeesAsnc(EmployeeCharacters, QueryItem);
+                await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "10");
+            }
+            ProgressRingAutosuggestionLoad.IsActive = false;
+            ProgressRingAutosuggestionLoad.Visibility = Visibility.Collapsed;
+        }
+
+        private async void AutoSugBoxEmps_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ProgressRingAutosuggestionLoad.IsActive = true;
+            ProgressRingAutosuggestionLoad.Visibility = Visibility.Visible;
+
+            await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
+            await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+
+            ProgressRingAutosuggestionLoad.IsActive = false;
+            ProgressRingAutosuggestionLoad.Visibility = Visibility.Collapsed;
+        }
     }
 }
