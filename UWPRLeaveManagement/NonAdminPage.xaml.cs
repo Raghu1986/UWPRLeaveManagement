@@ -30,6 +30,7 @@ namespace UWPRLeaveManagement
             LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            PasswordresetNonAdminButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveApplicationForm));
         }
 
@@ -39,6 +40,7 @@ namespace UWPRLeaveManagement
             LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            PasswordresetNonAdminButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveApplicationForm));
         }
 
@@ -49,6 +51,7 @@ namespace UWPRLeaveManagement
             LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.Black);
             LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            PasswordresetNonAdminButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminApproved), "2");
         }
 
@@ -59,6 +62,7 @@ namespace UWPRLeaveManagement
             LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.Black);
+            PasswordresetNonAdminButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminRejected), "3");
         }
 
@@ -68,12 +72,23 @@ namespace UWPRLeaveManagement
             LeaveHoldButton.Foreground = new SolidColorBrush(Colors.Black);
             LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            PasswordresetNonAdminButton.Foreground = new SolidColorBrush(Colors.DarkGray);
             NonAdminFrame.Navigate(typeof(LeaveListPageNonAdminHold), "1");
         }
 
         private void LogoffButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void PasswordresetNonAdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            LeaveBookButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveHoldButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveApprovedButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            LeaveRejectecdButton.Foreground = new SolidColorBrush(Colors.DarkGray);
+            PasswordresetNonAdminButton.Foreground = new SolidColorBrush(Colors.Black);
+            NonAdminFrame.Navigate(typeof(PasswordResetNonAdmin));
         }
     }
 }

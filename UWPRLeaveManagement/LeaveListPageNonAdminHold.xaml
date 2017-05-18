@@ -94,7 +94,7 @@
                         </StackPanel>
                         <StackPanel  >
                             <RelativePanel>
-                                <Button Name="ButtonCancel" Content="Cancel"  Background="#FFE01342"  Margin="0,10,10,05" Click="ButtonCancel_Click" />
+                                <Button Name="ButtonCancel" Content="Cancel"  Background="#FFE01342" Foreground="White" FontWeight="Bold"  Margin="10,05,0,05" RelativePanel.AlignHorizontalCenterWithPanel="True" Click="ButtonCancel_Click" />
                                 <ProgressRing Name="CancelProgressRing"  Visibility="Collapsed" IsActive="False" Foreground="white" FontWeight="ExtraBold" RelativePanel.AlignTopWith="ButtonCancel" RelativePanel.AlignVerticalCenterWith="ButtonCancel" RelativePanel.AlignHorizontalCenterWith="ButtonCancel" Margin="0,15,0,0" />
                             </RelativePanel>
                             
