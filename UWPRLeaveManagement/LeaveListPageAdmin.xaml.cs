@@ -29,6 +29,7 @@ namespace UWPRLeaveManagement
     {
         public ObservableCollection<EmployeeMaster> EmployeeCharacters { get; set; }
         public ObservableCollection<Leavetransaction> LeaveTransactions { get; set; }
+        public string selectedOidPassreset;
 
         public LeaveListPageAdmin()
         {
@@ -68,9 +69,11 @@ namespace UWPRLeaveManagement
 
         private async void EmployessListview_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
             var SelectedEmployee=(EmployeeMaster)e.ClickedItem;
             await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, SelectedEmployee.EmpId.ToString(), "1");
-            
+            Passwordresetframe.Visibility = Visibility.Visible;
+            Passwordresetframe.Navigate(typeof(PasswordResetAdmin), SelectedEmployee._id.Oid.ToString());
         }
 
         private async void AllEmployeeListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -190,6 +193,7 @@ namespace UWPRLeaveManagement
             {
                 await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
                 await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+                Passwordresetframe.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -210,11 +214,14 @@ namespace UWPRLeaveManagement
             {
                 await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
                 await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+                Passwordresetframe.Visibility = Visibility.Collapsed;
             }
             else
             { 
                 await EmployeeSync.GetAutosuggestEmployeesAsnc(EmployeeCharacters, ChooseItem);
                 await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, EmployeeCharacters[0].EmpId, "1");
+                Passwordresetframe.Visibility = Visibility.Visible;
+                Passwordresetframe.Navigate(typeof(PasswordResetAdmin), EmployeeCharacters[0].EmpId);
             }
 
             ProgressRingAutosuggestionLoad.IsActive = false;
@@ -230,11 +237,14 @@ namespace UWPRLeaveManagement
             {
                 await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
                 await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+                Passwordresetframe.Visibility = Visibility.Collapsed;
             }
             else
             { 
                 await EmployeeSync.GetAutosuggestEmployeesAsnc(EmployeeCharacters, QueryItem);
                 await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, EmployeeCharacters[0].EmpId, "1");
+                Passwordresetframe.Visibility = Visibility.Visible;
+                Passwordresetframe.Navigate(typeof(PasswordResetAdmin), EmployeeCharacters[0].EmpId);
             }
             ProgressRingAutosuggestionLoad.IsActive = false;
             ProgressRingAutosuggestionLoad.Visibility = Visibility.Collapsed;
@@ -247,9 +257,13 @@ namespace UWPRLeaveManagement
 
             await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, "All");
             await LeaveTransactionGetPostPut.GetLeaveTransactionAsnc(LeaveTransactions, "All", "1");
+            Passwordresetframe.Visibility = Visibility.Collapsed;
 
             ProgressRingAutosuggestionLoad.IsActive = false;
             ProgressRingAutosuggestionLoad.Visibility = Visibility.Collapsed;
         }
+
+        
+        
     }
 }

@@ -24,14 +24,20 @@ namespace UWPRLeaveManagement
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PasswordResetNonAdmin : Page
+    public sealed partial class PasswordResetAdmin : Page
     {
         public ObservableCollection<EmployeeMaster> EmployeeCharacters { get; set; }
+        public string OidPasswordreset;
 
-        public PasswordResetNonAdmin()
+        public PasswordResetAdmin()
         {
             this.InitializeComponent();
             EmployeeCharacters = new ObservableCollection<EmployeeMaster>();
+        }
+        protected  override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            OidPasswordreset = (string)e.Parameter;
+
         }
 
         private async void passwordResetButton_Click(object sender, RoutedEventArgs e)
@@ -42,6 +48,11 @@ namespace UWPRLeaveManagement
                     var messageDialog = new MessageDialog("Type password before you click on change");
                     await messageDialog.ShowAsync();
                 }
+                else if(string.IsNullOrEmpty(OidPasswordreset) || string.IsNullOrWhiteSpace(OidPasswordreset))
+                {
+                    var messageDialog = new MessageDialog("Reselect employee");
+                    await messageDialog.ShowAsync();
+                }
                 else
                 {
                 try
@@ -49,19 +60,13 @@ namespace UWPRLeaveManagement
                     ProgressRingPasswordReset.IsActive = true;
                     ProgressRingPasswordReset.Visibility = Visibility.Visible;
 
-                    string empId = "";
+                    
                     string newPassword = "";
-                    var localObjectStorageHelper = new LocalObjectStorageHelper();
-                    // Read and Save with simple objects
-                    string keySimpleObject = "47";
-                    if (localObjectStorageHelper.KeyExists(keySimpleObject))
-                    {
-                        empId = localObjectStorageHelper.Read<string>(keySimpleObject);
-                    }
+                    
                     newPassword = passwordResetBox.Password;
 
-                    await EmployeeSync.GetAllEmployeesAsnc(EmployeeCharacters, empId);
-                    string condition = EmployeeCharacters[0]._id.Oid.ToString();
+
+                    string condition = OidPasswordreset;
                     string setValue = String.Format("{{\"$set\":{{\"Password\":\"{0}\"}}}}", newPassword);
                     await EmployeeSync.EmpPasswordPutAsync(condition, setValue);
 
