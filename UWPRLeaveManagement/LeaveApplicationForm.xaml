@@ -215,12 +215,13 @@
                        />-->
             
             <TextBlock Name="Result"
+                       Text="sad'asljfd;lasjd"
                        RelativePanel.AlignLeftWithPanel="True" 
-                       Foreground="#FF7D31C3"
+                       Foreground="#FFC52651"
                        FontSize="20"
-                       FontWeight="Normal"
-                       FocusVisualPrimaryBrush="#FFAA6EDC"
-                       Margin="20,0,0,0"
+                       FontWeight="ExtraBold"
+                       Margin="100,10,0,0" 
+                       HorizontalAlignment="Center"
                        />
         </RelativePanel>
 
@@ -228,9 +229,10 @@
             <TextBlock Text="Holidays"
                        FontStyle="Normal"
                        FontWeight="Bold"
+                       Foreground="#FFC72F2F"
                        FontSize="18"
                        HorizontalAlignment="Left"
-                       Margin="10,0,0,0"
+                       Margin="8,0,0,0" 
                        />
             <ListView Name="holidayListView"
                       SelectionMode="None"

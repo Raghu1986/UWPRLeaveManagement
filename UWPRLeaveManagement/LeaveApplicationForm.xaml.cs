@@ -439,7 +439,7 @@ namespace UWPRLeaveManagement
 
             LeavePeriod = Days.GetNumbertoDays(GetNumberOfLeaveDays(intitDepartureHour, intitArrivalHour).ToString());
 
-            Result.Text = "Leave Period: " + LeavePeriod + " Days";
+            Result.Text = "LEAVE PERIOD: " + LeavePeriod + " DAYS";
         }
 
 

@@ -3,7 +3,7 @@
   <Identity Name="835e0246-58e8-4343-9650-78a89352efb7" Publisher="CN=Raghu" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="835e0246-58e8-4343-9650-78a89352efb7" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>UWPRLeaveManagement</DisplayName>
+    <DisplayName>Leave management</DisplayName>
     <PublisherDisplayName>Raghu</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,11 +15,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="UWPRLeaveManagement.App">
-      <uap:VisualElements DisplayName="UWPRLeaveManagement" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="UWPRLeaveManagement" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Leave management" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Leave management" BackgroundColor="transparent">
         <uap:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
       </uap:VisualElements>
     </Application>
   </Applications>
