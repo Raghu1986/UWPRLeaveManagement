@@ -12,9 +12,9 @@
             <Image Source="Assets\Icons\Rectrix Logo.jpg" Stretch="Uniform" Margin="0,0,0,43"  />
             <RelativePanel RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="0,30,0,0" >
                 <TextBox Name="EmpIdTextBox" PlaceholderText="Employee Id" Width="281" BorderThickness="1" AcceptsReturn="False" KeyDown="EmpIdTextBox_KeyDown"  />
-                <Button Name="EmpIdNextButton" Content="Next"   RelativePanel.AlignRightWith="EmpIdTextBox" RelativePanel.Below="EmpIdTextBox" Background="#FF4285F4" Margin="0,10,0,0"  Foreground="White" Click="EmpIdNextButton_Click" />
+                <Button Name="EmpIdNextButton" Content="Next"   RelativePanel.AlignRightWith="EmpIdTextBox" RelativePanel.Below="EmpIdTextBox" Background="#FF3C4F6E" Margin="0,10,0,0"  Foreground="White" Click="EmpIdNextButton_Click" FocusVisualPrimaryBrush="#FF8F6C0F" />
                 <TextBlock Name="NotFindErrorTextBlock" Text="Couldn't find your id" FontSize="10" Foreground="Red" RelativePanel.AlignLeftWith="EmpIdTextBox" RelativePanel.Below="EmpIdTextBox" Margin="10,10,0,0" Visibility="Collapsed" />
-                <ProgressRing Name="ProgressRingUserName"  Visibility="Collapsed" IsActive="False" Foreground="Black" FontWeight="ExtraBold" RelativePanel.AlignTopWith="EmpIdNextButton" RelativePanel.AlignVerticalCenterWith="EmpIdNextButton" RelativePanel.AlignHorizontalCenterWith="EmpIdNextButton" Margin="0,12,0,0" />
+                <ProgressRing Name="ProgressRingUserName"  Visibility="Visible" IsActive="False" Foreground="White" FontWeight="ExtraBold" RelativePanel.AlignTopWith="EmpIdNextButton" RelativePanel.AlignVerticalCenterWith="EmpIdNextButton" RelativePanel.AlignHorizontalCenterWith="EmpIdNextButton" Margin="0,14,0,0" />
             </RelativePanel>
         </RelativePanel>
     </Grid>

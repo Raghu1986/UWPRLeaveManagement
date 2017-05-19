@@ -57,6 +57,7 @@ namespace UWPRLeaveManagement
                 {
                 try
                 {
+                    passwordResetButton.IsEnabled = false;
                     ProgressRingPasswordReset.IsActive = true;
                     ProgressRingPasswordReset.Visibility = Visibility.Visible;
 
@@ -73,6 +74,7 @@ namespace UWPRLeaveManagement
                     var messageDialog = new MessageDialog("Password changed");
                     await messageDialog.ShowAsync();
 
+                    passwordResetButton.IsEnabled = true;
                     ProgressRingPasswordReset.Visibility = Visibility.Collapsed;
                     ProgressRingPasswordReset.IsActive = false;
                     passwordResetBox.Password = "";
@@ -83,6 +85,7 @@ namespace UWPRLeaveManagement
                     var messageDialog = new MessageDialog("Password not changed  !Error ");
                     await messageDialog.ShowAsync();
 
+                    passwordResetButton.IsEnabled = true;
                     ProgressRingPasswordReset.Visibility = Visibility.Collapsed;
                     ProgressRingPasswordReset.IsActive = false;
                 }
