@@ -200,7 +200,7 @@
                     
                     />
 
-            <ProgressRing Name="ProgressRingApply"  Visibility="Collapsed" IsActive="False" Foreground="Red" FontWeight="ExtraBold" RelativePanel.AlignTopWith="ApplyButton" RelativePanel.AlignVerticalCenterWith="ApplyButton" RelativePanel.AlignHorizontalCenterWith="ApplyButton" Margin="0,30,0,0" />
+            <ProgressRing Name="ProgressRingApply"  Visibility="Collapsed" IsActive="False" Foreground="Red" FontWeight="ExtraBold" RelativePanel.AlignTopWith="ApplyButton" RelativePanel.AlignVerticalCenterWith="ApplyButton" RelativePanel.AlignHorizontalCenterWith="ApplyButton" Margin="0,32,0,0" />
         </RelativePanel>
         
         <RelativePanel  Grid.Row="0" Grid.Column="0" >
