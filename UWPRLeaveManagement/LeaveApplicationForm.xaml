@@ -177,6 +177,8 @@
                      PlaceholderText="Remarks"
                      RelativePanel.AlignLeftWith="LeaveTypeTextBlock"
                      RelativePanel.Below="LeaveTypeTextBlock"
+                     IsTextPredictionEnabled="True"
+                     IsSpellCheckEnabled="True"
                      TextWrapping="Wrap"
                      FontSize="18"
                      FontStyle="Normal"
