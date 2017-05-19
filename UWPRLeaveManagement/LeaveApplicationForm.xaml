@@ -215,7 +215,6 @@
                        />-->
             
             <TextBlock Name="Result"
-                       Text="sad'asljfd;lasjd"
                        RelativePanel.AlignLeftWithPanel="True" 
                        Foreground="#FFC52651"
                        FontSize="20"
@@ -226,7 +225,7 @@
         </RelativePanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="30,0,0,0"   >
-            <TextBlock Text="Holidays"
+            <TextBlock Text="Rectrix Holiday list"
                        FontStyle="Normal"
                        FontWeight="Bold"
                        Foreground="#FFC72F2F"
